@@ -1,0 +1,47 @@
+var pstorage_8c =
+[
+    [ "pstorage_module_table_t", "structpstorage__module__table__t.html", "structpstorage__module__table__t" ],
+    [ "cmd_queue_element_t", "structcmd__queue__element__t.html", "structcmd__queue__element__t" ],
+    [ "cmd_queue_t", "structcmd__queue__t.html", "structcmd__queue__t" ],
+    [ "BLOCK_COUNT_CHECK", "group__api__param__check.html#gaf14afe98ca8552169862f0ac5467aff0", null ],
+    [ "BLOCK_ID_RANGE_CHECK", "group__api__param__check.html#gadbc0d293fd1e8c908d78c4daca426686", null ],
+    [ "BLOCK_SIZE_CHECK", "group__api__param__check.html#ga3eaad5d33657d8203d0cc929df8e221a", null ],
+    [ "INVALID_OPCODE", "pstorage_8c.html#ae8a964fad9f97467ca7fc24e214a9e01", null ],
+    [ "MASK_FLASH_API_ERR_BUSY", "pstorage_8c.html#ae2202cb0da350c57d5849fe44543fcaa", null ],
+    [ "MASK_MODULE_INITIALIZED", "pstorage_8c.html#af3fc10339923e7936172c646658ab4d7", null ],
+    [ "MASK_SINGLE_PAGE_OPERATION", "pstorage_8c.html#a1dd97788ca457ae23ee86431ce4c3421", null ],
+    [ "MASK_TAIL_SWAP_DONE", "pstorage_8c.html#af7d2ba900ce4b0ea81917af3cefadadb", null ],
+    [ "MODULE_BLOCK_SIZE", "pstorage_8c.html#acd01180037c08795d18b60f42068b4d9", null ],
+    [ "MODULE_ID_RANGE_CHECK", "group__api__param__check.html#ga9bf53a9faaed6006af4a8b070979a7dc", null ],
+    [ "NULL_PARAM_CHECK", "group__api__param__check.html#ga893095cb78af820ac02542b02c3f20c6", null ],
+    [ "OFFSET_CHECK", "group__api__param__check.html#gabacd7db41a1a2500f1b851d4750de4ec", null ],
+    [ "RAW_MODE_APP_ID", "pstorage_8c.html#a94b4283cfb2fa7e5353d3e45d7033872", null ],
+    [ "SD_CMD_MAX_TRIES", "pstorage_8c.html#a20fb7e9b8722dfd7c62c5a8be33b163f", null ],
+    [ "SIZE_CHECK", "group__api__param__check.html#ga0e49dd5a687ee452422c933a0ccf3746", null ],
+    [ "SOC_MAX_WRITE_SIZE", "pstorage_8c.html#a331ea60527b8d933979a04a0d1931329", null ],
+    [ "VERIFY_MODULE_INITIALIZED", "pstorage_8c.html#aa7ac2533b75dbff520da6d3a373338e5", null ],
+    [ "flash_swap_sub_state_t", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1", [
+      [ "STATE_ERASE_SWAP", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1afaf141aa17a871fad50222c9f2fcb490", null ],
+      [ "STATE_WRITE_DATA_TO_SWAP", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1a87f27ceaf0568a211ea95ac2178f4ba5", null ],
+      [ "STATE_ERASE_DATA_PAGE", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1a33b5c5ae4eb856d60866c841508cc74e", null ],
+      [ "STATE_RESTORE_TAIL", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1af05a6d4efb1a281471db750bce8414c0", null ],
+      [ "STATE_RESTORE_HEAD", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1aba920dafa8e80dfcd64ef966623538d3", null ],
+      [ "SWAP_SUB_STATE_MAX", "pstorage_8c.html#a294f4cd7181bd423f05db26cef887ea1ab8aaf0a419e5cab5d8c7178abc83d9fe", null ]
+    ] ],
+    [ "pstorage_state_t", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9", [
+      [ "STATE_IDLE", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9aaade5e53e88cf231292cd1142cce2afe", null ],
+      [ "STATE_STORE", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9a338a30e3f6b41adb98e0c0101fd8b7e4", null ],
+      [ "STATE_DATA_ERASE_WITH_SWAP", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9aef95ed28f798a4ae1ad0212ddfe36414", null ],
+      [ "STATE_DATA_ERASE", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9a8bf8e397bd25d4a5b8f06e844026b616", null ],
+      [ "STATE_ERROR", "pstorage_8c.html#ae224f0114dd7c5d4c51f332ccb4843d9ad55c0bfe3a7d3ae983e81a98e3384d6c", null ]
+    ] ],
+    [ "pstorage_access_status_get", "pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62", null ],
+    [ "pstorage_block_identifier_get", "pstorage_8c.html#afdeeb475e4f2db19863226bc55d507b5", null ],
+    [ "pstorage_clear", "pstorage_8c.html#a837209ed48f5dd3bba9a0ea82cfa4f59", null ],
+    [ "pstorage_init", "pstorage_8c.html#a729ef8b64fc0cb6bfdabb2543a565d32", null ],
+    [ "pstorage_load", "pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b", null ],
+    [ "pstorage_register", "pstorage_8c.html#a0a57b964c8945eaca2d267835ef6688c", null ],
+    [ "pstorage_store", "pstorage_8c.html#a12e52da12709de8d43bfb8389b80af6d", null ],
+    [ "pstorage_sys_event_handler", "pstorage_8c.html#a11860d5ebd557b256ede4ddd5d5d5aed", null ],
+    [ "pstorage_update", "pstorage_8c.html#a0316f640da7481e9bd03ed51b29a3e65", null ]
+];

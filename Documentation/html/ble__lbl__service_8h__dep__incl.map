@@ -1,0 +1,4 @@
+<map id="include/ble_lbl_service.h" name="include/ble_lbl_service.h">
+<area shape="rect" id="node2" href="$ble__lbl__service_8c.html" title="Establishes the BLE characteristics and handles BLE requests from the client (AKA Central)..." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node3" href="$main_8c.html" title="Starting point for the Ladybug Blue Lite firmware. The LBL reads the pH and EC levels in a nutrient b..." alt="" coords="172,80,255,107"/>
+</map>

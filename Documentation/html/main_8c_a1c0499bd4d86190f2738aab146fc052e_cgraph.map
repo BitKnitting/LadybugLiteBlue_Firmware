@@ -1,0 +1,7 @@
+<map id="advertising_start" name="advertising_start">
+<area shape="rect" id="node2" href="$_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="174,5,359,32"/>
+<area shape="rect" id="node4" href="$ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="194,56,339,83"/>
+<area shape="rect" id="node3" href="$_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="429,5,579,32"/>
+<area shape="rect" id="node5" href="$pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="408,56,600,83"/>
+<area shape="rect" id="node6" href="$ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="444,107,564,133"/>
+</map>

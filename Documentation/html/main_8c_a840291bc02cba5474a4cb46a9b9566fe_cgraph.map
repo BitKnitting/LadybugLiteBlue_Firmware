@@ -1,0 +1,15 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$main_8c.html#a7fc0ef993034998a5f7e55ac9e0fa49f" title="Function for initializing the Advertising functionality. " alt="" coords="150,5,261,32"/>
+<area shape="rect" id="node5" href="$main_8c.html#a1c0499bd4d86190f2738aab146fc052e" title="Function for starting advertising. " alt="" coords="145,56,265,83"/>
+<area shape="rect" id="node6" href="$_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="355,107,541,133"/>
+<area shape="rect" id="node10" href="$_ladybug___hydro_8c.html#a50471f358500c0a227c9ab7cc1a64c28" title="ladybug_there_are_calibration\l_values_to_write" alt="" coords="105,158,306,199"/>
+<area shape="rect" id="node11" href="$_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="131,224,280,251"/>
+<area shape="rect" id="node13" href="$_ladybug___hydro_8c.html#ae2383d8c26da95e5ce2aae93436ad36b" title="ladybug_there_are_plantInfo\l_values_to_write" alt="" coords="109,275,301,317"/>
+<area shape="rect" id="node14" href="$_ladybug___hydro_8c.html#a24ef7c4a5a45b3587d80540b7871cd4e" title="Hides a flag that says the device name has been changed by the client and it needs to be stored in Fl..." alt="" coords="113,341,297,382"/>
+<area shape="rect" id="node3" href="$ble__advertising_8c.html#a1aa5ac2cc4100bde75f2d41d5c11c221" title="ble_advertising_init" alt="" coords="380,5,516,32"/>
+<area shape="rect" id="node4" href="$ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="625,5,745,32"/>
+<area shape="rect" id="node8" href="$ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="375,56,521,83"/>
+<area shape="rect" id="node7" href="$_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="610,136,761,163"/>
+<area shape="rect" id="node9" href="$pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="589,56,781,83"/>
+<area shape="rect" id="node12" href="$_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="370,195,526,221"/>
+</map>

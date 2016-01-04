@@ -1,0 +1,8 @@
+<map id="ladybug_get_device_name" name="ladybug_get_device_name">
+<area shape="rect" id="node2" href="$_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="433,5,618,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22" title="flash_read" alt="" coords="267,56,351,83"/>
+<area shape="rect" id="node6" href="$_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="235,107,384,133"/>
+<area shape="rect" id="node3" href="$_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="667,56,818,83"/>
+<area shape="rect" id="node5" href="$pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="472,56,579,83"/>
+<area shape="rect" id="node7" href="$_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="447,107,603,133"/>
+</map>

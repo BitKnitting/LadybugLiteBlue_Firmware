@@ -1,0 +1,5 @@
+<map id="include/Ladybug_ADC.h" name="include/Ladybug_ADC.h">
+<area shape="rect" id="node2" href="$ble__lbl__service_8c.html" title="Establishes the BLE characteristics and handles BLE requests from the client (AKA Central)..." alt="" coords="5,80,147,107"/>
+<area shape="rect" id="node3" href="$_ladybug___a_d_c_8c.html" title="Encapsulates the functions used to read an AIN on the nRF51822. " alt="" coords="171,80,311,107"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8c.html" title="Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. " alt="" coords="335,80,483,107"/>
+</map>

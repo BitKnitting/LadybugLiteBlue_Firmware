@@ -1,0 +1,5 @@
+<map id="app_error_handler" name="app_error_handler">
+<area shape="rect" id="node2" href="$_ladybug__error_8h.html#a4df3b6dd09cac7a9c1705e80fcb735cb" title="Callback function for asserts in the SoftDevice. " alt="" coords="187,12,325,39"/>
+<area shape="rect" id="node3" href="$softdevice__handler_8c.html#a26d82eb7a8b9e1ad28fded69097d22a3" title="Callback function for asserts in the SoftDevice. " alt="" coords="373,5,517,46"/>
+<area shape="rect" id="node4" href="$softdevice__handler_8c.html#a33d6c5c2cf0d6cd1e89ef172d75e0975" title="softdevice_handler_init" alt="" coords="566,12,725,39"/>
+</map>

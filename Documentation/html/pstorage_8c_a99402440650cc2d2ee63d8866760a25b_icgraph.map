@@ -1,0 +1,6 @@
+<map id="pstorage_load" name="pstorage_load">
+<area shape="rect" id="node2" href="$_ladybug__flash_8h.html#a1a8d384a34b8e5c67648a44ce20e81e0" title="flash_read" alt="" coords="161,56,245,83"/>
+<area shape="rect" id="node3" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="319,5,473,32"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="294,56,498,83"/>
+<area shape="rect" id="node5" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="305,107,487,133"/>
+</map>

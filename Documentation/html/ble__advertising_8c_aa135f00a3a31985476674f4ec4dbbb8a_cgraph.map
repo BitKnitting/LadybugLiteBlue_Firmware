@@ -1,0 +1,5 @@
+<map id="ble_advertising_restart_without_whitelist" name="ble_advertising_restart_without_whitelist">
+<area shape="rect" id="node2" href="$ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="211,31,357,57"/>
+<area shape="rect" id="node3" href="$pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="405,5,597,32"/>
+<area shape="rect" id="node4" href="$ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="441,56,561,83"/>
+</map>

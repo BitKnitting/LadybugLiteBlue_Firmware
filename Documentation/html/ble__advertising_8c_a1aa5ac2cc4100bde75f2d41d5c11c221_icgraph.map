@@ -1,0 +1,4 @@
+<map id="ble_advertising_init" name="ble_advertising_init">
+<area shape="rect" id="node2" href="$main_8c.html#a7fc0ef993034998a5f7e55ac9e0fa49f" title="Function for initializing the Advertising functionality. " alt="" coords="190,5,301,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="349,5,400,32"/>
+</map>

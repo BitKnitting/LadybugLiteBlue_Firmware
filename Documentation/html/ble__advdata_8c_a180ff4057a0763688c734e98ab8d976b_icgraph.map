@@ -1,0 +1,10 @@
+<map id="ble_advdata_set" name="ble_advdata_set">
+<area shape="rect" id="node2" href="$ble__advertising_8c.html#a1aa5ac2cc4100bde75f2d41d5c11c221" title="ble_advertising_init" alt="" coords="179,43,315,69"/>
+<area shape="rect" id="node5" href="$ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="174,129,319,156"/>
+<area shape="rect" id="node3" href="$main_8c.html#a7fc0ef993034998a5f7e55ac9e0fa49f" title="Function for initializing the Advertising functionality. " alt="" coords="391,5,502,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="573,129,624,156"/>
+<area shape="rect" id="node6" href="$ble__advertising_8c.html#ab71cee0017bd9267448fd49404361360" title="ble_advertising_on\l_ble_evt" alt="" coords="380,57,513,98"/>
+<area shape="rect" id="node7" href="$ble__advertising_8c.html#abf558d6d5aa918ad3623b5bd69d1557e" title="ble_advertising_on\l_sys_evt" alt="" coords="380,122,513,163"/>
+<area shape="rect" id="node8" href="$ble__advertising_8c.html#aa135f00a3a31985476674f4ec4dbbb8a" title="ble_advertising_restart\l_without_whitelist" alt="" coords="368,187,525,229"/>
+<area shape="rect" id="node9" href="$main_8c.html#a1c0499bd4d86190f2738aab146fc052e" title="Function for starting advertising. " alt="" coords="387,253,507,280"/>
+</map>
