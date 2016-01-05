@@ -7,8 +7,12 @@
  sets characteristics within a BLE Service so a smartphone BLE app (or others that "speak" to BLE services) can retrieve the values over BLE.  The battery level can also be detected.  The
  initial "core" of the app came from following Nordic's nAN-36v1.1.pdf creating Bluetooth Low Energy Applications Using nRF51822
  \copyright October, 2015
+ \note	    Used Nordic's nRF51 SDK v9
+ \note	    Used gcc-arm-none-eabi-4_9-2015q1
+ \note	    Used Eclipse Luna
  \todo TBD: Use the LED to give feedback on the state of the Ladybug.
  */
+
 #include <stdint.h>
 #include "nordic_common.h"
 #include "softdevice_handler.h"
@@ -16,9 +20,9 @@
 #include "ble_hci.h"
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
-#include "ble_lbl_service.h"
 #include "app_timer.h"
-#include "pstorage.h"
+#include "Ladybug_BLE.h"
+#include "Ladybug_Flash.h"
 #include "Ladybug_Hydro.h"
 #include "SEGGER_RTT.h"
 
@@ -62,10 +66,7 @@ static ble_lbl_t                        m_lbl;					    /**< Instance of the BLE 
 #define SEC_PARAM_MAX_KEY_SIZE          16                                          /**< Maximum encryption key size. (copied from SDK examples)*/
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
-static pstorage_handle_t			m_block_calibration_store_handle;
-static pstorage_handle_t			m_block_plantInfo_store_handle;
-static pstorage_handle_t			m_block_device_name_store_handle;
-static uint8_t 				m_mypstorage_wait_flag;
+
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -189,7 +190,7 @@ static void service_init(void)
 {
   uint32_t err_code;
 
-  err_code = ble_lbl_init(&m_lbl);
+  err_code = ladybug_BLE_init(&m_lbl);
   APP_ERROR_CHECK(err_code);
 }
 /**@brief Function for handling advertising events.
@@ -384,7 +385,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
   SEGGER_RTT_printf(0,"connection handle: %d\n",p_ble_evt->evt.gap_evt.conn_handle);
   on_ble_evt(p_ble_evt);
   ble_conn_params_on_ble_evt(p_ble_evt);
-  ble_lbl_on_ble_evt(&m_lbl, p_ble_evt);
+  ladybug_BLE_on_ble_evt(&m_lbl, p_ble_evt);
 
 }
 /**@brief Timers are used all over the place - say for BLE...
@@ -430,132 +431,11 @@ void display_bytes(uint8_t *dest_bytes,int num_bytes){
   for (int i = 0; i < num_bytes; i++)
     {
       if (i > 0) SEGGER_RTT_WriteString(0,":");
-      SEGGER_RTT_printf(0,"%02X",dest_bytes[i]);
+      SEGGER_RTT_printf(0,"%02X",*dest_bytes);
+      dest_bytes++;
     }
   SEGGER_RTT_WriteString(0,"\n");
 }
-static void flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_write,pstorage_size_t num_bytes_to_write){
-  //must clear before write (or get unpredictable results)
-  m_mypstorage_wait_flag = 1;
-  pstorage_handle_t *p_handle;
-  switch (what_data_to_write) {
-    case plantInfo:
-      p_handle = &m_block_plantInfo_store_handle;
-      break;
-    case calibrationValues:
-      p_handle = &m_block_calibration_store_handle;
-      break;
-    case deviceName:
-      p_handle = &m_block_device_name_store_handle;
-      break;
-    default:
-      APP_ERROR_CHECK(LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_WRITE);
-      break;
-  }
-  //clearing the pstorage/flash sets the bytes to 0xFF
-  uint32_t err_code = pstorage_clear(p_handle, BLOCK_SIZE);
-  APP_ERROR_CHECK(err_code);
-  while(m_mypstorage_wait_flag) {  }
-  m_mypstorage_wait_flag = 1;
-  err_code = pstorage_store(p_handle, p_bytes_to_write, num_bytes_to_write, 0);
-  APP_ERROR_CHECK(err_code);
-  while(m_mypstorage_wait_flag) {  }
-}
-/***
- * The Ladybug stores info that is maintained across restarts of the device.  This info includes the device name, plant info (type of plant and growth stage), as well as
- * calibration values.  This function figures out what block handle has been initialized based on what info has been requested to read, reads the info from flash, then writes
- * the info to the p_bytes_to_read memory buffer.
- * @param data_to_read  		let the function know what type of data to read
- * @param p_bytes_to_read	give the function a buffer to write the data after reading from flash
- * @sa	LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ
- */
-void flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read){
-  m_mypstorage_wait_flag = 1;
-  pstorage_handle_t * p_handle;
-  //set the block handle to the block of flash set aside in flash_init for the data type to read
-  //point the bytes to the location holding the bytes in memory.
-  switch (data_to_read) {
-    case plantInfo:
-      p_handle = &m_block_plantInfo_store_handle;
-      break;
-    case calibrationValues:
-      p_handle = &m_block_calibration_store_handle;
-      break;
-    case deviceName:
-      p_handle = &m_block_device_name_store_handle;
-      break;
-    default:
-      //this is an error case.  The function doesn't know what to read.
-      APP_ERROR_CHECK(LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ);
-      break;
-  }
-  uint32_t err_code = pstorage_load(p_bytes_to_read, p_handle, BLOCK_SIZE, 0);
-  APP_ERROR_CHECK(err_code);
-  while(m_mypstorage_wait_flag) { }
-}
-static void my_pstorage_handler(pstorage_handle_t  * handle,
-				uint8_t              op_code,
-				uint32_t             result,
-				uint8_t            * p_data,
-				uint32_t             data_len)
-{
-  SEGGER_RTT_WriteString(0,"---> in my_pstorage_handler\n");
-  //check if there is an error.  If so, the code will go to the error handler
-  APP_ERROR_CHECK(result);
-  //now that the error has been checked, set the waiting flag to "off" since
-  //this is a way to let the code that made the flash action request that the
-  //request is finished.
-  //since i am using only one block, i don't need to associate with a block id...
-  m_mypstorage_wait_flag = 0;
-  //for testing purposes, see what op code was being handled...
-  switch (op_code) {
-    case PSTORAGE_LOAD_OP_CODE:
-      SEGGER_RTT_WriteString(0,".... READ flash\n");
-      break;
-    case PSTORAGE_STORE_OP_CODE:
-      SEGGER_RTT_WriteString(0,".... WRITE flash\n");
-      break;
-    case PSTORAGE_UPDATE_OP_CODE:
-      SEGGER_RTT_WriteString(0,".... UPDATE flash\n");
-      break;
-    case PSTORAGE_CLEAR_OP_CODE:
-      SEGGER_RTT_WriteString(0,".... CLEAR flash\n");
-      break;
-
-
-    default:
-      break;
-  }
-}
-/**
- * \callgraph
- *\brief Stuff done to let SoftDevice and rest of code to know i'll be wanting to read and write to flash.
- */
-static void flash_init() {
-  pstorage_module_param_t pstorage_param;   //Used when registering with pstorage
-  pstorage_handle_t	  handle;	    //used to access the chunk-o-flash requested when registering
-  //First thing is to initialize pstorage
-  uint32_t err_code = pstorage_init();
-  //if initialization was not successful, the error routine will be called and the code won't proceed.
-  APP_ERROR_CHECK(err_code);
-  //Next is to register amount of flash needed.  The smallest amount that can be requested is 16 bytes.  I'm requesting
-  //32 bytes because this is the number of bytes needed for plant_info. Two blocks are used...one for plant info and one for hydro values.  I must make a
-  //block request for the larger amount of bytes
-  pstorage_param.block_size = BLOCK_SIZE;
-  //request three blocks - one will be for pH, one for plant_info, and one for device name
-  pstorage_param.block_count = 3;
-  //assign a callback so know when a command has finished.
-  pstorage_param.cb = my_pstorage_handler;
-  err_code = pstorage_register(&pstorage_param, &handle);
-  APP_ERROR_CHECK(err_code);
-  //Then get the handles to the blocks of flash
-  pstorage_block_identifier_get(&handle, 0, &m_block_calibration_store_handle);
-  pstorage_block_identifier_get(&handle,1,&m_block_plantInfo_store_handle);
-  pstorage_block_identifier_get(&handle,2,&m_block_device_name_store_handle);
-
-  APP_ERROR_CHECK(err_code);
-}
-
 /**
  * \brief I think of main as providing initialization and BLE event handling.  One of the event handlers is used by the LBL's service and is defined
  *  in the service_init() function.  service_init() calls into the LBL's BLE service's initialization code which identifies the UUIDs of the LBL service.
@@ -573,7 +453,7 @@ int main(void)
   //initialize pstorage() - the way i'll read/write from flash.  POR is to use flash to store the calibration info for pH 4 and pH 7..
   //Note in the S110 Softdevice documentation for pstorage, there is a note:
   //  For implementation of interface included in the example, SoftDevice should be enabled and scheduler (if used) should be initialized prior to initializing this module.
-  flash_init();
+  ladybug_flash_init();
   //a good part of this is "cookie cutter" from the nRF51 SDK...my-o-my there is a lot of code for BLE (within SoftDevice) and once SoftDevice is initialized - unfortunately - there is no longer source code debugging.
   ble_stack_init();
   timers_init();
@@ -593,17 +473,17 @@ int main(void)
       storeCalibrationValues_t *p_storeCalibrationValues;
       if (true == ladybug_there_are_calibration_values_to_write(&p_storeCalibrationValues)){
 	  SEGGER_RTT_printf(0,"Writing calibration values to flash.  Number of bytes: %d\n",sizeof(storeCalibrationValues_t));
-	  flash_write(calibrationValues,(uint8_t *)p_storeCalibrationValues,sizeof(storeCalibrationValues_t));
+	  ladybug_flash_write(calibrationValues,(uint8_t *)p_storeCalibrationValues,sizeof(storeCalibrationValues_t));
       }
       storePlantInfo_t *p_storePlantInfo;
       if (true == ladybug_there_are_plantInfo_values_to_write(&p_storePlantInfo)){
 	  SEGGER_RTT_WriteString(0,"...Writing plantInfo values to flash\n");
-	  flash_write(plantInfo,(uint8_t *)p_storePlantInfo,sizeof(storePlantInfo_t));
+	  ladybug_flash_write(plantInfo,(uint8_t *)p_storePlantInfo,sizeof(storePlantInfo_t));
       }
       char *p_deviceName;
       if (true == ladybug_the_device_name_has_been_updated(&p_deviceName)){
 	  SEGGER_RTT_WriteString(0,"Writing device name to flash\n");
-	  flash_write(deviceName,(uint8_t *)p_deviceName,DEVNAME_MAX_LEN);
+	  ladybug_flash_write(deviceName,(uint8_t *)p_deviceName,DEVNAME_MAX_LEN);
       }
       power_manage();
     }

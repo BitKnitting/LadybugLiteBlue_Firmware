@@ -1,5 +1,9 @@
-/* Copyright (c) 2015 Margaret Johnson
- *
+/**
+ * \file		ladybug_BLE.c
+ * \author	Margaret Johnson
+ * \version	1.0
+ * \brief	This file handles all the BLE "goo" and activity.  Goo like adding the characteristics to the SoftDevice and
+ * 		handling read/write requests from the client (AKA the central).
  */
 
 #ifndef BLE_LBL_H__
@@ -48,7 +52,7 @@ typedef struct ble_lbl_s
  *
  * @return      NRF_SUCCESS on successful initialization of service, otherwise an error code.
  */
-uint32_t ble_lbl_init(ble_lbl_t * p_lbl);
+uint32_t ladybug_BLE_init(ble_lbl_t * p_lbl);
 
 /**@brief Function for handling the Application's BLE Stack events.
  *
@@ -58,7 +62,7 @@ uint32_t ble_lbl_init(ble_lbl_t * p_lbl);
  * @param[in]   p_lbl      LBL Service structure.
  * @param[in]   p_ble_evt  Event received from the BLE stack.
  */
-void ble_lbl_on_ble_evt(ble_lbl_t * p_lbl, ble_evt_t * p_ble_evt);
+void ladybug_BLE_on_ble_evt(ble_lbl_t * p_lbl, ble_evt_t * p_ble_evt);
 
 
 #endif // BLE_LBL_H__

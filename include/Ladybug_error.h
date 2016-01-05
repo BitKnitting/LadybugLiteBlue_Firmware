@@ -7,6 +7,7 @@
 
 #ifndef INCLUDE_LADYBUG_ERROR_H_
 #define INCLUDE_LADYBUG_ERROR_H_
+#include <stdint.h>
 #define APP_ERROR_HANDLER(ERR_CODE)                         \
     do                                                      \
     {                                                       \

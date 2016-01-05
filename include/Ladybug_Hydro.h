@@ -10,13 +10,7 @@
 #include "pstorage.h"
 #include "ble_advdata.h"
 
-//This enum lets the function know which data structure to read from or write to flash
-typedef enum {
-  hydroValues,
-  plantInfo,
-  deviceName,
-  calibrationValues
-}flash_rw_t;
+
 //The enum of control operations corresponds to an equivalent enum on the client
 //this way, the client and Ladybug are on the same page as to what command is being sent
 typedef enum {
@@ -89,10 +83,7 @@ typedef struct {
  * \brief Used to determine if the pH calibration values or plant info has been written to storage (or are corrupt)
  */
 #define WRITE_CHECK		0x01020304
-/**
- * \brief the bigger of the size of bytes needed between plant_info_data_t,pH_data_t, and m_device_name
- */
-#define BLOCK_SIZE		32
+
 /**
  * \brief The default device name is used when the code detects a device name has not been entered by the client.
  * The name must be <  DEVNAME_MAX_LEN

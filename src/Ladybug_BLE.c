@@ -5,7 +5,7 @@
  * \brief	Establishes the BLE characteristics and handles BLE requests from the client (AKA Central).
  * \details	The "original guts" came from the nrf51-ble-app-lbs-master example on Nordic's GitHub.
  */
-#include <ble_lbl_service.h>
+#include "Ladybug_BLE.h"
 #include <string.h>
 #include "nordic_common.h"
 #include "ble_srv_common.h"
@@ -15,13 +15,6 @@
 #include "Ladybug_Hydro.h"
 #include "Ladybug_error.h"
 #include "SEGGER_RTT.h"
-
-
-//#define CONTROL_UPDATE_HYDRO_READINGS		0
-//#define CONTROL_UPDATE_BATTERY_LEVEL		1
-//#define CONTROL_UPDATE_DEVICE_NAME		2
-//#define CONTROL_CALIBRATE_PH4			3
-//#define CONTROL_CALIBRATE_PH7			4
 
 extern ADC_interface adc;
 
@@ -233,7 +226,7 @@ static void on_write(ble_lbl_t * p_lbl, ble_evt_t * p_ble_evt)
  * @param p_lbl
  * @param p_ble_evt
  */
-void ble_lbl_on_ble_evt(ble_lbl_t * p_lbl, ble_evt_t * p_ble_evt)
+void ladybug_BLE_on_ble_evt(ble_lbl_t * p_lbl, ble_evt_t * p_ble_evt)
 {
   SEGGER_RTT_WriteString(0,"\n--> IN ble_lbl_on_ble_evt the BLE Event dispatcher for Ladybug\n");
   switch (p_ble_evt->header.evt_id)
@@ -564,7 +557,7 @@ static uint32_t plantInfo_char_add(ble_lbl_t * p_lbl) {
  * @param p_lbl		The Ladybug Lite service structure defined to hold handles and other state information to the LBL service and it's characteristics.
  * @return		either success or an error code
  */
-uint32_t ble_lbl_init(ble_lbl_t * p_lbl)
+uint32_t ladybug_BLE_init(ble_lbl_t * p_lbl)
 {
   SEGGER_RTT_WriteString(0,"---> in ble_lbl_init");
   uint32_t   err_code=NRF_SUCCESS;

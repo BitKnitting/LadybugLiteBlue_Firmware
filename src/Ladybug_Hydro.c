@@ -12,10 +12,9 @@
 #include "app_error.h"
 #include "softdevice_handler.h"
 #include "ble_advertising.h"
-#include "Ladybug_flash.h"
+#include "Ladybug_Flash.h"
 #include "Ladybug_ADC.h"
 #include "Ladybug_Hydro.h"
-#include "pstorage.h"
 #include "SEGGER_RTT.h"
 
 
@@ -108,7 +107,7 @@ void ladybug_get_plantInfo(plantInfo_t **p_plantInfo)
 {
   SEGGER_RTT_WriteString(0,"\n***--->>> in ladybug_get_plantInfo_values\n");
   *p_plantInfo = &m_storePlantInfo.plantChar.plantInfo;
-  flash_read(plantInfo,m_storePlantInfo.plantChar.bytes);
+  ladybug_flash_read(plantInfo,m_storePlantInfo.plantChar.bytes);
   if (m_storePlantInfo.write_check != WRITE_CHECK){
       //set plant type and stage to ??
       SEGGER_RTT_WriteString(0,"...setting plantStore bytes\n");
@@ -246,7 +245,7 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
   void ladybug_get_calibrationValues(calibrationValues_t **p_calibrationValues) {
     SEGGER_RTT_WriteString(0,"--> IN ladybug_get_calibrationValues\n");
     *p_calibrationValues = &m_storeCalibrationValues.calValues;
-    flash_read(calibrationValues,(uint8_t *)&m_storeCalibrationValues.calValues);
+    ladybug_flash_read(calibrationValues,(uint8_t *)&m_storeCalibrationValues.calValues);
     if (m_storeCalibrationValues.write_check != WRITE_CHECK){
 	//calibration values have not been stored
 	m_storeCalibrationValues.write_check = WRITE_CHECK;
@@ -314,7 +313,7 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
     SEGGER_RTT_WriteString(0,"---> IN ladybug_get_device_name");
     char device_name_in_storage_block[BLOCK_SIZE];
     memset(&device_name_in_storage_block, 0, BLOCK_SIZE);
-    flash_read(deviceName,(uint8_t *)&device_name_in_storage_block);
+    ladybug_flash_read(deviceName,(uint8_t *)&device_name_in_storage_block);
     uint8_t first_char_of_device_name = device_name_in_storage_block[0];
     if (0xFF == first_char_of_device_name){
 	memcpy(&device_name_in_storage_block,DEFAULT_DEVICE_NAME,sizeof(DEFAULT_DEVICE_NAME));
