@@ -495,8 +495,6 @@ int main(void)
   conn_params_init();
   sec_params_init();
   advertising_start();
-  // TEST
-  ladybug_flash_write(deviceName,"ATEST",DEVNAME_MAX_LEN,did_flash_write);
   // Enter main loop
   for (;;)
     {
