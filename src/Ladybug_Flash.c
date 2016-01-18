@@ -5,14 +5,72 @@
  * \brief	Functions that read/write to/from the nRF51822's Flash.
  * \date		Jan 4, 2016
  */
+#define	DEBUG	///< Used in app_error.h to give line / function name input.
+
 #include "Ladybug_Flash.h"
-#include "Ladybug_error.h"
+#include "app_timer.h"
+#include "app_error.h"
+#include "Ladybug_Error.h"
 #include "SEGGER_RTT.h"
 #include "Ladybug_Hydro.h"
 static pstorage_handle_t			m_block_calibration_store_handle;
 static pstorage_handle_t			m_block_plantInfo_store_handle;
 static pstorage_handle_t			m_block_device_name_store_handle;
 static uint8_t 				m_mypstorage_wait_flag;
+static app_timer_id_t                   m_timer_id;   /**< identifies this timer in the timer queue (only one in queue so...) */
+/*!
+ * \brief
+ *  m_return: 	pointer to the call back function passed into ladybug_flash_write().
+ */
+void (*m_flash_return)(uint32_t);
+/**
+ * \callgraph
+ * \brief Called by the system when the timer goes off.  If the timer goes off, this means the Flash activity didn't complete.  The caller
+ * is notified by calling the caller's callback with an error code.
+ * @param p_context
+ */
+static void timeout_handler(void * p_context)
+{
+  SEGGER_RTT_WriteString (0, "--> in timeout handler\n");
+  //  UNUSED_PARAMETER(p_context);
+
+  // Call back the caller with an error
+  uint32_t err_code = LADYBUG_ERROR_FLASH_ACTION_NOT_COMPLETED;
+  m_flash_return(err_code);
+}
+/**
+ * \callgraph
+ * \brief create a timer to be used before a call to write/read to flash in case the flash action doesn't happen it won't hang the system.
+ */
+void create_timer() {
+  SEGGER_RTT_WriteString (0, "--> in create_timer\n");
+  uint32_t err_code = app_timer_create(&m_timer_id,APP_TIMER_MODE_SINGLE_SHOT, timeout_handler);
+  APP_ERROR_CHECK(err_code);
+}
+/**
+ * \callgraph
+ * \brief Start the timer before calling into pstorage asking for a flash event.
+ */
+void start_timer() {
+  SEGGER_RTT_WriteString (0, "--> in start_timer\n");
+  uint32_t err_code;
+  static const uint32_t wait_time_for_flash_event_to_complete_ms = 5000; ///< Wait 5 seconds before timing out from waiting for a flash event to complete
+  static const uint32_t app_timer_prescaler = 0; ///< Counter overflows after 512s when prescaler = 0
+  uint32_t timer_ticks = APP_TIMER_TICKS(wait_time_for_flash_event_to_complete_ms, app_timer_prescaler);
+  // Start application timers.
+  err_code = app_timer_start(m_timer_id, timer_ticks, NULL);
+  APP_ERROR_CHECK(err_code);
+}
+/**
+ * \callgraph
+ * \brief Called to stop the timer from firing.
+ */
+void stop_timer() {
+  SEGGER_RTT_WriteString (0, "--> in stop_timer\n");
+  uint32_t err_code = app_timer_stop(m_timer_id);
+  APP_ERROR_CHECK(err_code);
+}
+
 /**
  * \callgraph
  * \brief This is the callback function that pstorage calls back to when a Flash event has completed for the block handle
@@ -25,10 +83,10 @@ static uint8_t 				m_mypstorage_wait_flag;
  * @param data_len
  */
 void ladybug_flash_handler(pstorage_handle_t  * handle,
-				uint8_t              op_code,
-				uint32_t             result,
-				uint8_t            * p_data,
-				uint32_t             data_len)
+			   uint8_t              op_code,
+			   uint32_t             result,
+			   uint8_t            * p_data,
+			   uint32_t             data_len)
 {
   SEGGER_RTT_WriteString(0,"---> in flash_handler\n");
   //check if there is an error.  If so, the code will go to the error handler
@@ -65,6 +123,7 @@ void ladybug_flash_handler(pstorage_handle_t  * handle,
  *		is also running.
  */
 void ladybug_flash_init() {
+  SEGGER_RTT_WriteString(0,"==> IN ladybug_flash_init\n");
   pstorage_module_param_t pstorage_param;   //Used when registering with pstorage
   pstorage_handle_t	  handle;	    //used to access the chunk-o-flash requested when registering
   //First thing is to initialize pstorage
@@ -85,8 +144,9 @@ void ladybug_flash_init() {
   pstorage_block_identifier_get(&handle, 0, &m_block_calibration_store_handle);
   pstorage_block_identifier_get(&handle,1,&m_block_plantInfo_store_handle);
   pstorage_block_identifier_get(&handle,2,&m_block_device_name_store_handle);
+  // Create the timer.  This will be called before a Flash activity is requested to avoid forever hanging.
+  create_timer();
 
-  APP_ERROR_CHECK(err_code);
 }
 
 /***
@@ -97,9 +157,10 @@ void ladybug_flash_init() {
  * @param p_bytes_to_read	give the function a buffer to write the data after reading from flash
  * @sa	LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ
  */
-void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read){
-  m_mypstorage_wait_flag = 1;
+void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read,void(*did_flash_action)(uint32_t err_code)){
+  SEGGER_RTT_WriteString(0,"==> IN ladybug_flash_read\n");
   pstorage_handle_t * p_handle;
+  m_flash_return = did_flash_action;
   //set the block handle to the block of flash set aside in flash_init for the data type to read
   //point the bytes to the location holding the bytes in memory.
   switch (data_to_read) {
@@ -114,12 +175,17 @@ void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read){
       break;
     default:
       //this is an error case.  The function doesn't know what to read.
-      APP_ERROR_CHECK(LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ);
+      APP_ERROR_CHECK(LADYBUG_ERROR_FLASH_UNSURE_WHAT_DATA_TO_READ);
       break;
   }
+  // There is a chance the Flash activity doesn't happen so we use a timer to prevent waiting forever.
+  m_mypstorage_wait_flag = 1;
+  start_timer();
   uint32_t err_code = pstorage_load(p_bytes_to_read, p_handle, BLOCK_SIZE, 0);
-  APP_ERROR_CHECK(err_code);
   while(m_mypstorage_wait_flag) { }
+  APP_ERROR_CHECK(err_code);
+  // Flash activity completed so stop timer.
+  stop_timer();
 }
 /**
  * \callgraph
@@ -130,10 +196,21 @@ void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read){
  * @param what_data_to_write	Whether to write out plant info, calibration values, or the device name.
  * @param p_bytes_to_write	A pointer to the bytes to be written to flash.
  * @param num_bytes_to_write	The number of bytes to write to flash
+ * @param did_flash_action	Function caller passes in to be informed of the outcome of the Flash request.  The pointer to the function must be valid.
  */
-void ladybug_flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_write,pstorage_size_t num_bytes_to_write){
-  //must clear before write (or get unpredictable results)
-  m_mypstorage_wait_flag = 1;
+void ladybug_flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_write,pstorage_size_t num_bytes_to_write,void(*did_flash_action)(uint32_t err_code)){
+  SEGGER_RTT_WriteString(0,"==> IN ladybug_flash_write\n");
+  // Check parameters.  The what_data_to_write param is checked below in the switch statement.
+  if (p_bytes_to_write == NULL || (did_flash_action == NULL)){
+      APP_ERROR_HANDLER(LADYBUG_ERROR_NULL_POINTER);
+  }
+  if (num_bytes_to_write <= 0){
+      APP_ERROR_HANDLER(LADYBUG_ERROR_NUM_BYTES_TO_WRITE);
+  }
+  // Set the static variable used to hold the location of the callback function to the pointer passed in by the caller.
+  m_flash_return = did_flash_action;
+  // Must clear the Flash block before write (or get unpredictable results).
+
   pstorage_handle_t *p_handle;
   switch (what_data_to_write) {
     case plantInfo:
@@ -146,17 +223,26 @@ void ladybug_flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_writ
       p_handle = &m_block_device_name_store_handle;
       break;
     default:
-      APP_ERROR_CHECK(LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_WRITE);
+      APP_ERROR_HANDLER(LADYBUG_ERROR_INVALID_COMMAND);
       break;
   }
   //clearing the pstorage/flash sets the bytes to 0xFF
+  // m_mypstorage_wait_flag is set to 0 within ladybug_flash_handler().  This way the system lets us know the Flash activity happened.
+  m_mypstorage_wait_flag = 1;
+  // There is a chance the Flash activity doesn't happen so we use a timer to prevent waiting forever.
+  start_timer();
   uint32_t err_code = pstorage_clear(p_handle, BLOCK_SIZE);
-  APP_ERROR_CHECK(err_code);
   while(m_mypstorage_wait_flag) {  }
+  APP_ERROR_CHECK(err_code);
+  // The flash action happened, so turn off the timer before it goes off.
+  stop_timer();
+  // Start the timer up again to timeout if writing to flash doesn't happen
+  start_timer();
   m_mypstorage_wait_flag = 1;
   err_code = pstorage_store(p_handle, p_bytes_to_write, num_bytes_to_write, 0);
-  APP_ERROR_CHECK(err_code);
   while(m_mypstorage_wait_flag) {  }
+  APP_ERROR_CHECK(err_code);
+  stop_timer();
 }
 
 

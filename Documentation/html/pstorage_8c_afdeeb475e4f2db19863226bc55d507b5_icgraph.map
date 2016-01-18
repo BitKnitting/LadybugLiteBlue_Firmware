@@ -1,0 +1,4 @@
+<map id="pstorage_block_identifier_get" name="pstorage_block_identifier_get">
+<area shape="rect" id="node2" href="$_ladybug___flash_8h.html#a435a629aad711985f4501d96900c4a3f" title="Initialize the blocks of flash memory used for reading/writing. " alt="" coords="251,5,381,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="429,5,480,32"/>
+</map>

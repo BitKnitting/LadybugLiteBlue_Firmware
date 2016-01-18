@@ -24,8 +24,8 @@ typedef enum {
   calibrationValues
 }flash_rw_t;
 void ladybug_flash_init(void);
-void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read);
-void ladybug_flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_write,pstorage_size_t num_bytes_to_write);
+void ladybug_flash_read(flash_rw_t data_to_read,uint8_t *p_bytes_to_read,void(*did_flash_action)(uint32_t err_code));
+void ladybug_flash_write(flash_rw_t what_data_to_write, uint8_t *p_bytes_to_write,pstorage_size_t num_bytes_to_write,void(*did_flash_write)(uint32_t err_code));
 void ladybug_flash_handler(pstorage_handle_t  * handle,
 				uint8_t              op_code,
 				uint32_t             result,

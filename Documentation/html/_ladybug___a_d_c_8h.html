@@ -123,9 +123,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_ladybug___a_d_c_8h__dep__incl.png" border="0" usemap="#include_2_ladybug___a_d_c_8hdep" alt=""/></div>
 <map name="include_2_ladybug___a_d_c_8hdep" id="include_2_ladybug___a_d_c_8hdep">
-<area shape="rect" id="node2" href="ble__lbl__service_8c.html" title="Establishes the BLE characteristics and handles BLE requests from the client (AKA Central)..." alt="" coords="5,80,147,107"/>
-<area shape="rect" id="node3" href="_ladybug___a_d_c_8c.html" title="Encapsulates the functions used to read an AIN on the nRF51822. " alt="" coords="171,80,311,107"/>
-<area shape="rect" id="node4" href="_ladybug___hydro_8c.html" title="Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. " alt="" coords="335,80,483,107"/>
+<area shape="rect" id="node2" href="_ladybug___a_d_c_8c.html" title="Encapsulates the functions used to read an AIN on the nRF51822. " alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node3" href="_ladybug___b_l_e_8c.html" title="This file handles all the BLE &quot;goo&quot; and activity. Goo like adding the characteristics to the SoftDevi..." alt="" coords="169,80,305,107"/>
+<area shape="rect" id="node4" href="_ladybug___hydro_8c.html" title="Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. " alt="" coords="330,80,477,107"/>
 </map>
 </div>
 </div>
@@ -139,7 +139,7 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:af5b611b958c93333204da2789a0fdd1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___a_d_c_8h.html#af5b611b958c93333204da2789a0fdd1d">pH_VGND</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:af5b611b958c93333204da2789a0fdd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping of the AINs to a macro that relates to the hydro measurements.  <a href="#af5b611b958c93333204da2789a0fdd1d">More...</a><br /></td></tr>
+<tr class="memdesc:af5b611b958c93333204da2789a0fdd1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping of the AINs on the nRF51822 to a hydro mV reading. The caller of adc.read() passes one of these in when reading the ADC. e.g.: adc.read(pH_AIN) reads the mV value for pH.  <a href="#af5b611b958c93333204da2789a0fdd1d">More...</a><br /></td></tr>
 <tr class="separator:af5b611b958c93333204da2789a0fdd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5ff47012f2d7f97c77f09d26ee01026"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___a_d_c_8h.html#ad5ff47012f2d7f97c77f09d26ee01026">pH_AIN</a>&#160;&#160;&#160;7</td></tr>
 <tr class="separator:ad5ff47012f2d7f97c77f09d26ee01026"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,7 +161,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00022">22</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00023">23</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
 
 </div>
 </div>
@@ -175,7 +175,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00023">23</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00024">24</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
 
 </div>
 </div>
@@ -189,7 +189,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00024">24</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00025">25</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
 
 </div>
 </div>
@@ -203,7 +203,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00021">21</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00022">22</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
 
 </div>
 </div>
@@ -217,10 +217,10 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>mapping of the AINs to a macro that relates to the hydro measurements. </p>
-<dl class="section note"><dt>Note</dt><dd>These could change with board revisions </dd></dl>
+<p>mapping of the AINs on the nRF51822 to a hydro mV reading. The caller of adc.read() passes one of these in when reading the ADC. e.g.: adc.read(pH_AIN) reads the mV value for pH. </p>
+<dl class="section note"><dt>Note</dt><dd>These could change with board revisions. </dd></dl>
 
-<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00020">20</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___a_d_c_8h_source.html#l00021">21</a> of file <a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>.</p>
 
 </div>
 </div>

@@ -6,11 +6,8 @@ var _ladybug___hydro_8h =
     [ "plantInfo_t", "structplant_info__t.html", "structplant_info__t" ],
     [ "plantInfo_u", "unionplant_info__u.html", "unionplant_info__u" ],
     [ "storePlantInfo_t", "structstore_plant_info__t.html", "structstore_plant_info__t" ],
-    [ "BLOCK_SIZE", "_ladybug___hydro_8h.html#ad51ded0bbd705f02f73fc60c0b721ced", null ],
     [ "DEFAULT_DEVICE_NAME", "_ladybug___hydro_8h.html#a9dae37b6b57e30542ac5d55a27d6e46c", null ],
     [ "DEVNAME_MAX_LEN", "_ladybug___hydro_8h.html#a2e995d2b0aef9d9851e199033ff79848", null ],
-    [ "LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ", "_ladybug___hydro_8h.html#a9d2b41837236a7118af33b68adf63fb7", null ],
-    [ "LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_WRITE", "_ladybug___hydro_8h.html#ae8618a1d2bcbc85b17733f4bc3a51a15", null ],
     [ "WRITE_CHECK", "_ladybug___hydro_8h.html#ab6a3bd412c6df80930f1516b35b66114", null ],
     [ "control_enum_t", "_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539e", [
       [ "resetPHcalValues", "_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539ea1bd2b68455dc37caf792c35b0c67d9f6", null ],
@@ -26,12 +23,6 @@ var _ladybug___hydro_8h =
       [ "undoEC2", "_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539ea5670d5b54bd47d559ecac0e3f9f5f92c", null ],
       [ "updateBatteryLevel", "_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539ea224136a208bbd186c2ddf01ae01bf2bd", null ],
       [ "updateDeviceName", "_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539ea5343af5dc706e9d0b1e4d86f860efed7", null ]
-    ] ],
-    [ "flash_rw_t", "_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbd", [
-      [ "hydroValues", "_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbda43a2bd4f4d19109837a792b2cfc8621f", null ],
-      [ "plantInfo", "_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbda63433a9c372259bfc227c15e5395bc6f", null ],
-      [ "deviceName", "_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbda5c4478d1fda0797242d78456d1a88541", null ],
-      [ "calibrationValues", "_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbda06e0fde09d44122348daf8b85dd82969", null ]
     ] ],
     [ "ladybug_get_calibration_values_memory_location", "_ladybug___hydro_8h.html#aba27f18b899dc075bb565ce8a886cb5c", null ],
     [ "ladybug_get_calibrationValues", "_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624", null ],

@@ -12,14 +12,17 @@
  \note	    Used Eclipse Luna
  \todo TBD: Use the LED to give feedback on the state of the Ladybug.
  */
+#define	DEBUG	///< Used in app_error.h to give line / function name input.
 
 #include <stdint.h>
 #include "nordic_common.h"
 #include "softdevice_handler.h"
+#include "app_error.h"
 #include "ble.h"
 #include "ble_hci.h"
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
+#include "nrf_drv_clock.h"
 #include "app_timer.h"
 #include "Ladybug_BLE.h"
 #include "Ladybug_Flash.h"
@@ -38,14 +41,19 @@
  * https://devzone.nordicsemi.com/blogs/679/nrf51-current-consumption-for-common-scenarios/   ...given the info in this blog post, I decided to set the advertising interval to 2 seconds. This can be fine tuned, but my take was to reduce current consumption by minimizing advertising.
  * \note the interval is in units of 0.625ms.  A value of 3,200 = 3,200*.625 -> 2,000 ms = 2 seconds
  */
-#define APP_ADV_INTERVAL                3200
+#define	APP_ADV_INTERVAL			3200
 /**
  * \brief the value for advertising time out can be between 1 and 0x3FFF seconds.
  * \note setting this value to 0 says "don't time out"...so i'm doing this because i want the LBL to always be discoverable (another reason why the adv interval should be large)
  */
-#define APP_ADV_TIMEOUT_IN_SECONDS      0
-#define APP_TIMER_PRESCALER             0                                           /**< Value of the RTC1 PRESCALER register. */
-#define APP_TIMER_MAX_TIMERS            4                                           /**< BLE uses at least two timers... I set it to 4 (arbitrary) to give room...Bummer that all app timers need to be initialized here...A bit of a black art */
+// I started changing #define's to static const's based on my code review.  However, this caused challenges
+// when compiling since the Nordic SDK uses the constants as magic numbers to other #define routines...
+// so I'm going to leave the rest as is and use static const moving forward for variables I create.
+static uint32_t const 			m_app_adv_timeout_in_seconds = 0;
+static uint32_t const			m_app_timer_prescaler = 0; 		   /**< Value of the RTC1 PRESCALER register. */
+// I would have preferred to use a static const instead of #define however the SDK requires a precompiled value since it is used
+// within a #define within the SDK.
+#define	APP_TIMER_MAX_TIMERS		4  					   /**< BLE uses at least two timers... I set it to 4 (arbitrary) to give room...Bummer that all app timers need to be initialized here...A bit of a black art */
 #define APP_TIMER_OP_QUEUE_SIZE         4                                           /**< Size of timer operation queues. (copied from SDK examples) */
 static ble_gap_sec_params_t             m_sec_params;                               /**< Security requirements for this application. (copied from SDK examples)*/
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. (copied from SDK examples)*/
@@ -54,20 +62,25 @@ static ble_lbl_t                        m_lbl;					    /**< Instance of the BLE 
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(1000, UNIT_1_25_MS)           /**< Maximum acceptable connection interval (1 second). (copied from SDK examples)*/
 #define SLAVE_LATENCY                   0                                           /**< Slave latency. (..gee great description :-) ! copied from SDK examples)*/
 #define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)             /**< Connection supervisory timeout (4 seconds). (copied from SDK examples)*/
-#define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(20000, APP_TIMER_PRESCALER) /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (15 seconds). (copied from SDK examples)*/
-#define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(5000, APP_TIMER_PRESCALER)  /**< Time between each call to sd_ble_gap_conn_param_update after the first call (5 seconds).(copied from SDK examples) */
+#define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(20000, m_app_adv_timeout_in_seconds) /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (15 seconds). (copied from SDK examples)*/
+#define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(5000, m_app_adv_timeout_in_seconds)  /**< Time between each call to sd_ble_gap_conn_param_update after the first call (5 seconds).(copied from SDK examples) */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. (copied from SDK examples)*/
-#define SEC_PARAM_TIMEOUT               30                                          /**< Timeout for Pairing Request or Security Request (in seconds). (copied from SDK examples)*/
-#define SEC_PARAM_BOND                  1                                           /**< Perform bonding. (copied from SDK examples)*/
-#define SEC_PARAM_MITM                  0                                           /**< Man In The Middle protection not required. (copied from SDK examples)*/
-#define SEC_PARAM_IO_CAPABILITIES       BLE_GAP_IO_CAPS_NONE                        /**< No I/O capabilities. (copied from SDK examples)*/
-#define SEC_PARAM_OOB                   0                                           /**< Out Of Band data not available. (copied from SDK examples)*/
-#define SEC_PARAM_MIN_KEY_SIZE          7                                           /**< Minimum encryption key size. (copied from SDK examples)*/
-#define SEC_PARAM_MAX_KEY_SIZE          16                                          /**< Maximum encryption key size. (copied from SDK examples)*/
+
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
-
-
+/**
+ * \callgraph
+ * \brief call back from Ladybug_Flash.c to let us know if the flash write was successful (or not)
+ * @param err_code	0 if successful
+ */
+void did_flash_write(uint32_t err_code) {
+  if (err_code == 0) {
+      SEGGER_RTT_WriteString(0,"...Flash write SUCCESS!");
+  }
+  else {
+      APP_ERROR_HANDLER(err_code);
+  }
+}
 /**@brief Callback function for asserts in the SoftDevice.
  *
  * @details This function will be called in case of an assert in the SoftDevice.
@@ -109,7 +122,13 @@ void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p
  */
 static void sec_params_init(void)
 {
-
+#define SEC_PARAM_TIMEOUT               30                                          /**< Timeout for Pairing Request or Security Request (in seconds). (copied from SDK examples)*/
+#define SEC_PARAM_BOND                  1                                           /**< Perform bonding. (copied from SDK examples)*/
+#define SEC_PARAM_MITM                  0                                           /**< Man In The Middle protection not required. (copied from SDK examples)*/
+#define SEC_PARAM_IO_CAPABILITIES       BLE_GAP_IO_CAPS_NONE                        /**< No I/O capabilities. (copied from SDK examples)*/
+#define SEC_PARAM_OOB                   0                                           /**< Out Of Band data not available. (copied from SDK examples)*/
+#define SEC_PARAM_MIN_KEY_SIZE          7                                           /**< Minimum encryption key size. (copied from SDK examples)*/
+#define SEC_PARAM_MAX_KEY_SIZE          16                                          /**< Maximum encryption key size. (copied from SDK examples)*/
   m_sec_params.bond         = SEC_PARAM_BOND;
   m_sec_params.mitm         = SEC_PARAM_MITM;
   m_sec_params.io_caps      = SEC_PARAM_IO_CAPABILITIES;
@@ -233,7 +252,7 @@ void advertising_init(void)
   ble_adv_modes_config_t options = {0};
   options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
   options.ble_adv_fast_interval = APP_ADV_INTERVAL;
-  options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
+  options.ble_adv_fast_timeout  = m_app_adv_timeout_in_seconds;
   err_code = ble_advertising_init(&advdata, NULL, &options, on_adv_evt, NULL);
   APP_ERROR_CHECK(err_code);
 }
@@ -242,17 +261,14 @@ void advertising_init(void)
  * @details This function sets up all the necessary GAP (Generic Access Profile) parameters of the
  *          device including the device name, appearance, and the preferred connection parameters.
  */
-static void gap_params_init(void)
+static void gap_params_init(char *p_deviceName)
 {
   uint32_t                err_code=0;
   ble_gap_conn_params_t   gap_conn_params;
   ble_gap_conn_sec_mode_t sec_mode;
 
   BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-  char *p_deviceName;
-  ladybug_get_device_name(&p_deviceName);
-  SEGGER_RTT_printf(0,"Device name: %s \n",p_deviceName);
-  SEGGER_RTT_printf(0,"String length: %d\n",strlen(p_deviceName));
+
   err_code = sd_ble_gap_device_name_set(&sec_mode,
 					(const uint8_t *)p_deviceName,
 					strlen(p_deviceName));
@@ -388,14 +404,21 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
   ladybug_BLE_on_ble_evt(&m_lbl, p_ble_evt);
 
 }
-/**@brief Timers are used all over the place - say for BLE...
- * \note some timers need to be initialized or the code won't work, returning an error code of "invalid state".
+/**@brief Ladybug_Flash uses an app timer.  App timers require the low frequency clock to be ticking.
+ * Initialize the timer module.
  * \callgraph
  */
 static void timers_init(void){
-  APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_MAX_TIMERS, APP_TIMER_OP_QUEUE_SIZE, false);
+  // Initialize the low frequency clock.
+  uint32_t err_code = nrf_drv_clock_init(NULL);
+  APP_ERROR_CHECK(err_code);
+  nrf_drv_clock_lfclk_request();
+  // Initialize the timer queue.
+  APP_TIMER_INIT(m_app_timer_prescaler, APP_TIMER_MAX_TIMERS, APP_TIMER_OP_QUEUE_SIZE, false);
 }
-/**@brief Function for initializing the BLE stack.
+/**
+ * \callgraph
+ * @brief Function for initializing the BLE stack.
  *
  * @details Initializes the SoftDevice and the BLE event interrupt.
  */
@@ -453,18 +476,27 @@ int main(void)
   //initialize pstorage() - the way i'll read/write from flash.  POR is to use flash to store the calibration info for pH 4 and pH 7..
   //Note in the S110 Softdevice documentation for pstorage, there is a note:
   //  For implementation of interface included in the example, SoftDevice should be enabled and scheduler (if used) should be initialized prior to initializing this module.
-  ladybug_flash_init();
+//  ladybug_flash_init();
   //a good part of this is "cookie cutter" from the nRF51 SDK...my-o-my there is a lot of code for BLE (within SoftDevice) and once SoftDevice is initialized - unfortunately - there is no longer source code debugging.
   ble_stack_init();
+  // The app timers rely on the BLE stack being initialized.  This means app timer initialization must happen after BLE initialization.
   timers_init();
-  gap_params_init();
-
-  //call service_init() before calling advertising_init()...service_init() calls into the LBL's BLE initialization code (where the LBL peripheral service and characteristics are defined and flash reead/write are initialized)
+  // (pstorage api access to) flash and the app timer used within the read/write flash functions require BLE and timers init first.
+  ladybug_flash_init();
+  // The device name is needed as a GAP parameter.  This is the first time a flash action (flash read) happens which means BLE and app timer init must happen first.
+  char *p_deviceName;
+  ladybug_get_device_name(&p_deviceName);
+  SEGGER_RTT_printf(0,"Device name: %s \n",p_deviceName);
+  SEGGER_RTT_printf(0,"String length: %d\n",strlen(p_deviceName));
+  gap_params_init(p_deviceName);
+  //call service_init() before calling advertising_init()...service_init() calls into the LBL's BLE initialization code (where the LBL peripheral service and characteristics are defined)
   service_init();
   advertising_init();
   conn_params_init();
   sec_params_init();
   advertising_start();
+  // TEST
+  ladybug_flash_write(deviceName,"ATEST",DEVNAME_MAX_LEN,did_flash_write);
   // Enter main loop
   for (;;)
     {
@@ -473,17 +505,17 @@ int main(void)
       storeCalibrationValues_t *p_storeCalibrationValues;
       if (true == ladybug_there_are_calibration_values_to_write(&p_storeCalibrationValues)){
 	  SEGGER_RTT_printf(0,"Writing calibration values to flash.  Number of bytes: %d\n",sizeof(storeCalibrationValues_t));
-	  ladybug_flash_write(calibrationValues,(uint8_t *)p_storeCalibrationValues,sizeof(storeCalibrationValues_t));
+	  ladybug_flash_write(calibrationValues,(uint8_t *)p_storeCalibrationValues,sizeof(storeCalibrationValues_t),did_flash_write);
       }
       storePlantInfo_t *p_storePlantInfo;
       if (true == ladybug_there_are_plantInfo_values_to_write(&p_storePlantInfo)){
 	  SEGGER_RTT_WriteString(0,"...Writing plantInfo values to flash\n");
-	  ladybug_flash_write(plantInfo,(uint8_t *)p_storePlantInfo,sizeof(storePlantInfo_t));
+	  ladybug_flash_write(plantInfo,(uint8_t *)p_storePlantInfo,sizeof(storePlantInfo_t),did_flash_write);
       }
       char *p_deviceName;
       if (true == ladybug_the_device_name_has_been_updated(&p_deviceName)){
 	  SEGGER_RTT_WriteString(0,"Writing device name to flash\n");
-	  ladybug_flash_write(deviceName,(uint8_t *)p_deviceName,DEVNAME_MAX_LEN);
+	  ladybug_flash_write(deviceName,(uint8_t *)p_deviceName,DEVNAME_MAX_LEN,did_flash_write);
       }
       power_manage();
     }

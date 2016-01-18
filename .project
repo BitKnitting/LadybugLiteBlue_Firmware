@@ -23,4 +23,11 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>clock</name>
+			<type>2</type>
+			<location>/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/clock</location>
+		</link>
+	</linkedResources>
 </projectDescription>

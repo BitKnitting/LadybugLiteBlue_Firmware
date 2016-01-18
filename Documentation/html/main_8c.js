@@ -1,12 +1,11 @@
 var main_8c =
 [
     [ "APP_ADV_INTERVAL", "main_8c.html#adde0b932e57e128e4cd81c2dca47cfe3", null ],
-    [ "APP_ADV_TIMEOUT_IN_SECONDS", "main_8c.html#af58371bad8e1be8e2323df60379ed2df", null ],
     [ "APP_TIMER_MAX_TIMERS", "main_8c.html#ad5accf4f59399fd2dd980e1569deac3e", null ],
     [ "APP_TIMER_OP_QUEUE_SIZE", "main_8c.html#a756f526e607f350705dc7a2e05027cf2", null ],
-    [ "APP_TIMER_PRESCALER", "main_8c.html#a7bbff5bb0ca047b109e70a831f08e217", null ],
     [ "CONN_SUP_TIMEOUT", "main_8c.html#a799412c2b531ca347e13611e6e7523b9", null ],
     [ "DEAD_BEEF", "main_8c.html#a9a42d2d5bc11ba49000e048131c96f39", null ],
+    [ "DEBUG", "main_8c.html#ad72dbcf6d0153db1b8d8a58001feed83", null ],
     [ "FIRST_CONN_PARAMS_UPDATE_DELAY", "main_8c.html#a7204f7a367e8f1ac53ef62c4ad220efc", null ],
     [ "IS_SRVC_CHANGED_CHARACT_PRESENT", "main_8c.html#ac0ad4bcfe8e9edf6794e9a796378978a", null ],
     [ "MAX_CONN_INTERVAL", "main_8c.html#a7d868ed8adb7d475b463fd8855907a18", null ],
@@ -25,7 +24,7 @@ var main_8c =
     [ "advertising_start", "main_8c.html#a1c0499bd4d86190f2738aab146fc052e", null ],
     [ "app_error_handler", "main_8c.html#ad8b5b293dfa06cbbfeb03aaaaa2772cf", null ],
     [ "assert_nrf_callback", "main_8c.html#a4df3b6dd09cac7a9c1705e80fcb735cb", null ],
+    [ "did_flash_write", "main_8c.html#a8d9d4c58cc86d4a22a38790db39c16a8", null ],
     [ "display_bytes", "main_8c.html#a5683319a8ba34696c26f847a35ef7fe2", null ],
-    [ "flash_read", "main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22", null ],
     [ "main", "main_8c.html#a840291bc02cba5474a4cb46a9b9566fe", null ]
 ];

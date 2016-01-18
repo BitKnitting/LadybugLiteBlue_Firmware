@@ -110,27 +110,26 @@ Directory dependency graph for src:</div>
 <map name="dir__68267d1309a1af8e8297ef4c3efbcdba__dep" id="dir__68267d1309a1af8e8297ef4c3efbcdba__dep">
 <area shape="rect" id="node1" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" title="src" alt="" coords="5,5,77,53"/>
 <area shape="rect" id="node2" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="5,101,77,149"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000002_000000.html" title="10" alt="" coords="42,76,58,90"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000002_000000.html" title="14" alt="" coords="42,76,58,90"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:ble__lbl__service_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__lbl__service_8c.html">ble_lbl_service.c</a> <a href="ble__lbl__service_8c_source.html">[code]</a></td></tr>
-<tr class="memdesc:ble__lbl__service_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes the BLE characteristics and handles BLE requests from the client (AKA Central). <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:_ladybug___a_d_c_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___a_d_c_8c.html">Ladybug_ADC.c</a> <a href="_ladybug___a_d_c_8c_source.html">[code]</a></td></tr>
 <tr class="memdesc:_ladybug___a_d_c_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the functions used to read an AIN on the nRF51822. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:_ladybug___b_l_e_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___b_l_e_8c.html">Ladybug_BLE.c</a> <a href="_ladybug___b_l_e_8c_source.html">[code]</a></td></tr>
+<tr class="memdesc:_ladybug___b_l_e_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file handles all the BLE "goo" and activity. Goo like adding the characteristics to the SoftDevice and handling read/write requests from the client (AKA the central). <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:_ladybug___flash_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___flash_8c.html">Ladybug_Flash.c</a> <a href="_ladybug___flash_8c_source.html">[code]</a></td></tr>
+<tr class="memdesc:_ladybug___flash_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions that read/write to/from the nRF51822's Flash. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:_ladybug___hydro_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html">Ladybug_Hydro.c</a> <a href="_ladybug___hydro_8c_source.html">[code]</a></td></tr>
 <tr class="memdesc:_ladybug___hydro_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:main_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html">main.c</a> <a href="main_8c_source.html">[code]</a></td></tr>
 <tr class="memdesc:main_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starting point for the Ladybug Blue Lite firmware. The LBL reads the pH and EC levels in a nutrient bath. It then sets characteristics within a BLE Service so a smartphone BLE app (or others that "speak" to BLE services) can retrieve the values over BLE. The battery level can also be detected. The initial "core" of the app came from following Nordic's nAN-36v1.1.pdf creating Bluetooth Low Energy Applications Using nRF51822. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:_s_e_g_g_e_r___r_t_t_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_s_e_g_g_e_r___r_t_t_8c.html">SEGGER_RTT.c</a> <a href="_s_e_g_g_e_r___r_t_t_8c_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:_s_e_g_g_e_r___r_t_t__printf_8c"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_s_e_g_g_e_r___r_t_t__printf_8c.html">SEGGER_RTT_printf.c</a> <a href="_s_e_g_g_e_r___r_t_t__printf_8c_source.html">[code]</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -29,7 +29,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_ladybug___a_d_c_8c.html",
-"main_8c.html#a7204f7a367e8f1ac53ef62c4ad220efc"
+"main_8c_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

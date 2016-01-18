@@ -55,12 +55,16 @@
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths.1729639726" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/softdevice/s110/headers"/>
+									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/common"/>
+									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/config"/>
+									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/clock"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/RTT"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/pstorage/config"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/hal"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/libraries/timer"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/pstorage"/>
+									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/drivers_nrf/timer"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/ble/ble_advertising"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/ble/common"/>
 									<listOptionValue builtIn="false" value="/Users/margaret/Documents/EHAL/ARM/Nordic/nRF51/nrf51_sdk9/components/toolchain"/>
@@ -104,7 +108,8 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="nRF51|src|*original*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="clock|nRF51|src|*original*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="clock"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="nRF51"/>
 						<entry excluding="*original*" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>

@@ -120,22 +120,23 @@ $(document).ready(function(){initNavTree('_ladybug___hydro_8c.html','');});
 <code>#include &quot;nrf_gpio.h&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &quot;app_error.h&quot;</code><br />
 <code>#include &quot;softdevice_handler.h&quot;</code><br />
 <code>#include &quot;ble_advertising.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="_ladybug__flash_8h_source.html">Ladybug_flash.h</a>&quot;</code><br />
+<code>#include &quot;app_error.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_ladybug___error_8h_source.html">Ladybug_Error.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_ladybug___flash_8h_source.html">Ladybug_Flash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_ladybug___a_d_c_8h_source.html">Ladybug_ADC.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_ladybug___hydro_8h_source.html">Ladybug_Hydro.h</a>&quot;</code><br />
-<code>#include &quot;pstorage.h&quot;</code><br />
 <code>#include &quot;SEGGER_RTT.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Ladybug_Hydro.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="_ladybug___hydro_8c__incl.png" border="0" usemap="#src_2_ladybug___hydro_8c" alt=""/></div>
 <map name="src_2_ladybug___hydro_8c" id="src_2_ladybug___hydro_8c">
-<area shape="rect" id="node9" href="_ladybug__flash_8h.html" title="Ladybug_flash.h" alt="" coords="979,80,1099,107"/>
-<area shape="rect" id="node11" href="_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1055,155,1181,181"/>
-<area shape="rect" id="node13" href="_ladybug___a_d_c_8h.html" title="Ladybug_ADC.h" alt="" coords="784,80,904,107"/>
+<area shape="rect" id="node9" href="_ladybug___error_8h.html" title="Identifies the error codes that are specific to the Ladybug. " alt="" coords="783,80,904,107"/>
+<area shape="rect" id="node10" href="_ladybug___flash_8h.html" title="Ladybug_Flash.h" alt="" coords="1074,80,1197,107"/>
+<area shape="rect" id="node12" href="_ladybug___a_d_c_8h.html" title="Ladybug_ADC.h" alt="" coords="929,80,1049,107"/>
+<area shape="rect" id="node13" href="_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1222,80,1348,107"/>
 </map>
 </div>
 </div>
@@ -143,17 +144,15 @@ Include dependency graph for Ladybug_Hydro.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:adc2a12272dec562832081b9df7963276"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#adc2a12272dec562832081b9df7963276">EC_VIN_FET</a>&#160;&#160;&#160;0</td></tr>
-<tr class="memdesc:adc2a12272dec562832081b9df7963276"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping the FET pins to the schematic  <a href="#adc2a12272dec562832081b9df7963276">More...</a><br /></td></tr>
-<tr class="separator:adc2a12272dec562832081b9df7963276"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e796f5ea1dd794de6eb0d633c936826"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a2e796f5ea1dd794de6eb0d633c936826">EC_VOUT_FET</a>&#160;&#160;&#160;7</td></tr>
-<tr class="separator:a2e796f5ea1dd794de6eb0d633c936826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#ad72dbcf6d0153db1b8d8a58001feed83">DEBUG</a></td></tr>
+<tr class="memdesc:ad72dbcf6d0153db1b8d8a58001feed83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in app_error.h to give line / function name input.  <a href="#ad72dbcf6d0153db1b8d8a58001feed83">More...</a><br /></td></tr>
+<tr class="separator:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a5310b84fbe5b55ff17ca16cde0e36cb9">ladybug_get_plantInfo</a> (<a class="el" href="structplant_info__t.html">plantInfo_t</a> **p_plantInfo)</td></tr>
-<tr class="memdesc:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings.  <a href="#a5310b84fbe5b55ff17ca16cde0e36cb9">More...</a><br /></td></tr>
-<tr class="separator:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a1c497a7f82e304623169dac01bd02c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c">did_flash_read</a> (uint32_t err_code)</td></tr>
+<tr class="memdesc:a9a1c497a7f82e304623169dac01bd02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">call back from <a class="el" href="_ladybug___flash_8c.html" title="Functions that read/write to/from the nRF51822&#39;s Flash. ">Ladybug_Flash.c</a> to let us know if the flash read was successful (or not)  <a href="#a9a1c497a7f82e304623169dac01bd02c">More...</a><br /></td></tr>
+<tr class="separator:a9a1c497a7f82e304623169dac01bd02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a345675bc7383860703617f7d371d4696"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a345675bc7383860703617f7d371d4696">ladybug_update_calibration_value</a> (<a class="el" href="_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539e">control_enum_t</a> command, int solutionValue)</td></tr>
 <tr class="memdesc:a345675bc7383860703617f7d371d4696"><td class="mdescLeft">&#160;</td><td class="mdescRight">the central has requested calibrating either the pH or EC probe. First decide what calibration solution the probe is in. This could be a pH4, pH7, EC1, or EC2 calibration solution. Calculating the pH and EC happens on the client. In this function the mV readings for the AINs associated with what is being calibrated is read and stored into flash. EC readings will also store the calibration solution value used that would be the reading if the EC probe was "ideal"  <a href="#a345675bc7383860703617f7d371d4696">More...</a><br /></td></tr>
 <tr class="separator:a345675bc7383860703617f7d371d4696"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +165,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a38ac14326e802229f4e0627c798ad8f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a38ac14326e802229f4e0627c798ad8f2">ladybug_reset_calibration_values</a> (<a class="el" href="_ladybug___hydro_8h.html#a1cd0c0d0f5120d097e20d97f58af539e">control_enum_t</a> command)</td></tr>
 <tr class="memdesc:a38ac14326e802229f4e0627c798ad8f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">a request has come in from the client to reset either the pH or EC calibration values  <a href="#a38ac14326e802229f4e0627c798ad8f2">More...</a><br /></td></tr>
 <tr class="separator:a38ac14326e802229f4e0627c798ad8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#a5310b84fbe5b55ff17ca16cde0e36cb9">ladybug_get_plantInfo</a> (<a class="el" href="structplant_info__t.html">plantInfo_t</a> **p_plantInfo)</td></tr>
+<tr class="memdesc:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings.  <a href="#a5310b84fbe5b55ff17ca16cde0e36cb9">More...</a><br /></td></tr>
+<tr class="separator:a5310b84fbe5b55ff17ca16cde0e36cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afff0e97016d886f457fdaa5fb5822624"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#afff0e97016d886f457fdaa5fb5822624">ladybug_get_calibrationValues</a> (<a class="el" href="structcalibration_values__t.html">calibrationValues_t</a> **p_calibrationValues)</td></tr>
 <tr class="separator:afff0e97016d886f457fdaa5fb5822624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1e6ed8ed8b17b1a8a2dce1e48435431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ladybug___hydro_8c.html#ac1e6ed8ed8b17b1a8a2dce1e48435431">ladybug_get_measurements</a> (<a class="el" href="structmeasurements__t.html">measurements_t</a> **p_measurements)</td></tr>
@@ -201,37 +203,62 @@ Variables</h2></td></tr>
 
 <p>Definition in file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="adc2a12272dec562832081b9df7963276"></a>
+<a class="anchor" id="ad72dbcf6d0153db1b8d8a58001feed83"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define EC_VIN_FET&#160;&#160;&#160;0</td>
+          <td class="memname">#define DEBUG</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>mapping the FET pins to the schematic </p>
+<p>Used in app_error.h to give line / function name input. </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00034">34</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2e796f5ea1dd794de6eb0d633c936826"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define EC_VOUT_FET&#160;&#160;&#160;7</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00035">35</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00009">9</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a9a1c497a7f82e304623169dac01bd02c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void did_flash_read </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>err_code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>call back from <a class="el" href="_ladybug___flash_8c.html" title="Functions that read/write to/from the nRF51822&#39;s Flash. ">Ladybug_Flash.c</a> to let us know if the flash read was successful (or not) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">err_code</td><td>0 if successful </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00059">59</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="_ladybug___hydro_8c_a9a1c497a7f82e304623169dac01bd02c_icgraph.png" border="0" usemap="#_ladybug___hydro_8c_a9a1c497a7f82e304623169dac01bd02c_icgraph" alt=""/></div>
+<map name="_ladybug___hydro_8c_a9a1c497a7f82e304623169dac01bd02c_icgraph" id="_ladybug___hydro_8c_a9a1c497a7f82e304623169dac01bd02c_icgraph">
+<area shape="rect" id="node2" href="_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="189,5,342,32"/>
+<area shape="rect" id="node3" href="_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="163,56,367,83"/>
+<area shape="rect" id="node4" href="_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="175,107,356,133"/>
+<area shape="rect" id="node5" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="416,107,467,133"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="aba27f18b899dc075bb565ce8a886cb5c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +281,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00273">273</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00316">316</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -278,17 +305,20 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00246">246</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00287">287</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_ladybug___hydro_8c_afff0e97016d886f457fdaa5fb5822624_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_afff0e97016d886f457fdaa5fb5822624_cgraph" alt=""/></div>
 <map name="_ladybug___hydro_8c_afff0e97016d886f457fdaa5fb5822624_cgraph" id="_ladybug___hydro_8c_afff0e97016d886f457fdaa5fb5822624_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="259,5,445,32"/>
-<area shape="rect" id="node4" href="main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22" title="flash_read" alt="" coords="310,56,394,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="494,5,645,32"/>
-<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="516,56,623,83"/>
+<area shape="rect" id="node2" href="_ladybug___flash_8c.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="259,56,397,83"/>
+<area shape="rect" id="node8" href="_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c" title="call back from Ladybug_Flash.c to let us know if the flash read was successful (or not) ..." alt="" coords="273,107,383,133"/>
+<area shape="rect" id="node3" href="_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="456,5,541,32"/>
+<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="445,56,552,83"/>
+<area shape="rect" id="node6" href="_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="457,107,541,133"/>
+<area shape="rect" id="node4" href="app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="600,5,715,32"/>
+<area shape="rect" id="node7" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="601,107,714,133"/>
 </map>
 </div>
 </p>
@@ -309,19 +339,30 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00313">313</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00357">357</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_cgraph" alt=""/></div>
 <map name="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_cgraph" id="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="433,5,618,32"/>
-<area shape="rect" id="node4" href="main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22" title="flash_read" alt="" coords="267,56,351,83"/>
-<area shape="rect" id="node6" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="235,107,384,133"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="667,56,818,83"/>
-<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="472,56,579,83"/>
-<area shape="rect" id="node7" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="447,107,603,133"/>
+<area shape="rect" id="node2" href="_ladybug___flash_8c.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="235,56,373,83"/>
+<area shape="rect" id="node8" href="_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c" title="call back from Ladybug_Flash.c to let us know if the flash read was successful (or not) ..." alt="" coords="249,107,359,133"/>
+<area shape="rect" id="node3" href="_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="432,5,517,32"/>
+<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="421,56,528,83"/>
+<area shape="rect" id="node6" href="_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="433,107,517,133"/>
+<area shape="rect" id="node4" href="app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="576,5,691,32"/>
+<area shape="rect" id="node7" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="577,107,690,133"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_icgraph.png" border="0" usemap="#_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_icgraph" alt=""/></div>
+<map name="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_icgraph" id="_ladybug___hydro_8c_ab98babdac1ab1060ed5460b6fcb21b26_icgraph">
+<area shape="rect" id="node2" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="235,5,285,32"/>
 </map>
 </div>
 </p>
@@ -350,18 +391,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00261">261</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="_ladybug___hydro_8c_ac1e6ed8ed8b17b1a8a2dce1e48435431_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_ac1e6ed8ed8b17b1a8a2dce1e48435431_cgraph" alt=""/></div>
-<map name="_ladybug___hydro_8c_ac1e6ed8ed8b17b1a8a2dce1e48435431_cgraph" id="_ladybug___hydro_8c_ac1e6ed8ed8b17b1a8a2dce1e48435431_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="246,5,431,32"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="481,5,631,32"/>
-</map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00303">303</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -380,18 +410,22 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. </p>
+<p>By using a pointer (p_plantInfo) that points to the address of another pointer () i.e.: a pointer to pointer or a double pointer, passing around a .c global variable between .c files is avoided. </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00107">107</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00268">268</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_ladybug___hydro_8c_a5310b84fbe5b55ff17ca16cde0e36cb9_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_a5310b84fbe5b55ff17ca16cde0e36cb9_cgraph" alt=""/></div>
 <map name="_ladybug___hydro_8c_a5310b84fbe5b55ff17ca16cde0e36cb9_cgraph" id="_ladybug___hydro_8c_a5310b84fbe5b55ff17ca16cde0e36cb9_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="209,5,394,32"/>
-<area shape="rect" id="node4" href="main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22" title="flash_read" alt="" coords="259,56,343,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="443,5,594,32"/>
-<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="465,56,572,83"/>
+<area shape="rect" id="node2" href="_ladybug___flash_8c.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="208,56,347,83"/>
+<area shape="rect" id="node8" href="_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c" title="call back from Ladybug_Flash.c to let us know if the flash read was successful (or not) ..." alt="" coords="223,107,332,133"/>
+<area shape="rect" id="node3" href="_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="405,5,491,32"/>
+<area shape="rect" id="node5" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="395,56,501,83"/>
+<area shape="rect" id="node6" href="_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="406,107,490,133"/>
+<area shape="rect" id="node4" href="app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="549,5,664,32"/>
+<area shape="rect" id="node7" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="550,107,663,133"/>
 </map>
 </div>
 </p>
@@ -414,7 +448,7 @@ Here is the call graph for this function:</div>
 
 <p>a request has come in from the client to reset either the pH or EC calibration values </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00232">232</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00251">251</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -435,7 +469,7 @@ Here is the call graph for this function:</div>
 <p>Hides a flag that says the device name has been changed by the client and it needs to be stored in Flash. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the device name has been updated over BLE. Otherwise, false </dd></dl>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00305">305</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00349">349</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -463,7 +497,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00280">280</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00324">324</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -491,7 +525,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00292">292</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00336">336</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -537,7 +571,7 @@ Here is the caller graph for this function:</div>
 
 <p>OOps! The central wants the last value stored for either EC1 or EC2 calibration measurement. </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00185">185</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00201">201</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -567,19 +601,7 @@ Here is the caller graph for this function:</div>
 
 <p>OOps! The central wants the last value stored for a pH calibration measurement. </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00171">171</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="_ladybug___hydro_8c_a04d32ef05750b7ace4ca2ca322ea9599_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_a04d32ef05750b7ace4ca2ca322ea9599_cgraph" alt=""/></div>
-<map name="_ladybug___hydro_8c_a04d32ef05750b7ace4ca2ca322ea9599_cgraph" id="_ladybug___hydro_8c_a04d32ef05750b7ace4ca2ca322ea9599_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="253,5,403,32"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="451,5,607,32"/>
-<area shape="rect" id="node4" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="657,5,807,32"/>
-</map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00184">184</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -609,20 +631,7 @@ Here is the call graph for this function:</div>
 
 <p>the central has requested calibrating either the pH or EC probe. First decide what calibration solution the probe is in. This could be a pH4, pH7, EC1, or EC2 calibration solution. Calculating the pH and EC happens on the client. In this function the mV readings for the AINs associated with what is being calibrated is read and stored into flash. EC readings will also store the calibration solution value used that would be the reading if the EC probe was "ideal" </p>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00128">128</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="_ladybug___hydro_8c_a345675bc7383860703617f7d371d4696_cgraph.png" border="0" usemap="#_ladybug___hydro_8c_a345675bc7383860703617f7d371d4696_cgraph" alt=""/></div>
-<map name="_ladybug___hydro_8c_a345675bc7383860703617f7d371d4696_cgraph" id="_ladybug___hydro_8c_a345675bc7383860703617f7d371d4696_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="240,5,389,32"/>
-<area shape="rect" id="node5" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="438,56,623,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="453,5,609,32"/>
-<area shape="rect" id="node4" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="673,31,823,57"/>
-</map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00138">138</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>
@@ -659,7 +668,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00333">333</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
+<p>Definition at line <a class="el" href="_ladybug___hydro_8c_source.html#l00377">377</a> of file <a class="el" href="_ladybug___hydro_8c_source.html">Ladybug_Hydro.c</a>.</p>
 
 </div>
 </div>

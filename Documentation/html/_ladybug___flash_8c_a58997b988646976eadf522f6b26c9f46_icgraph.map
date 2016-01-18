@@ -1,0 +1,8 @@
+<map id="stop_timer" name="stop_timer">
+<area shape="rect" id="node2" href="$_ladybug___flash_8h.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="140,69,279,96"/>
+<area shape="rect" id="node7" href="$_ladybug___flash_8h.html#a897602858d3220b0945ed08fdd09ca26" title="When the Ladybug needs to store info, it calls the flash_write routine. " alt="" coords="139,132,279,159"/>
+<area shape="rect" id="node3" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="354,5,507,32"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="329,56,533,83"/>
+<area shape="rect" id="node5" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="340,107,521,133"/>
+<area shape="rect" id="node6" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="581,132,632,159"/>
+</map>

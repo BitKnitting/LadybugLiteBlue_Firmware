@@ -171,12 +171,12 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">bool</span> no_more_soc_evts = (m_sys_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">bool</span> no_more_soc_evts = (m_sys_evt_handler == NULL);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#ifdef BLE_STACK_SUPPORT_REQD</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> no_more_ble_evts = (m_ble_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> no_more_ble_evts = (m_ble_evt_handler == NULL);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#ifdef ANT_STACK_SUPPORT_REQD</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">bool</span> no_more_ant_evts = (m_ant_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">bool</span> no_more_ant_evts = (m_ant_evt_handler == NULL);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">for</span> (;;)</div>
@@ -196,7 +196,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            }</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (err_code != NRF_SUCCESS)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <a class="code" href="_ladybug__error_8h.html#acc506bf926a7d3a20f00bc1c24047fd9">APP_ERROR_HANDLER</a>(err_code);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                APP_ERROR_HANDLER(err_code);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            {</div>
@@ -219,7 +219,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (err_code != NRF_SUCCESS)</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <a class="code" href="_ladybug__error_8h.html#acc506bf926a7d3a20f00bc1c24047fd9">APP_ERROR_HANDLER</a>(err_code);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                APP_ERROR_HANDLER(err_code);</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            }</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            {</div>
@@ -243,7 +243,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            }</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (err_code != NRF_SUCCESS)</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <a class="code" href="_ladybug__error_8h.html#acc506bf926a7d3a20f00bc1c24047fd9">APP_ERROR_HANDLER</a>(err_code);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                APP_ERROR_HANDLER(err_code);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            }</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            {</div>
@@ -294,7 +294,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="comment">// Save configuration.</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#if defined (BLE_STACK_SUPPORT_REQD)</span></div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">// Check that buffer is not NULL.</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">if</span> (p_ble_evt_buffer == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">if</span> (p_ble_evt_buffer == NULL)</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    {</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_PARAM;</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
@@ -343,7 +343,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="preprocessor">#ifdef BLE_STACK_SUPPORT_REQD</span></div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;uint32_t softdevice_ble_evt_handler_set(ble_evt_handler_t ble_evt_handler)</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;{</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span> (ble_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span> (ble_evt_handler == NULL)</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NULL;</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
@@ -358,7 +358,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#ifdef ANT_STACK_SUPPORT_REQD</span></div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;uint32_t softdevice_ant_evt_handler_set(ant_evt_handler_t ant_evt_handler)</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (ant_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (ant_evt_handler == NULL)</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    {</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NULL;</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    }</div>
@@ -372,7 +372,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
 <div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="softdevice__handler_8c.html#a200d4e1f1c70a46e6de6343f0a7d84b1">  275</a></span>&#160;uint32_t <a class="code" href="softdevice__handler_8c.html#a200d4e1f1c70a46e6de6343f0a7d84b1">softdevice_sys_evt_handler_set</a>(sys_evt_handler_t sys_evt_handler)</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;{</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">if</span> (sys_evt_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">if</span> (sys_evt_handler == NULL)</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    {</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NULL;</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    }</div>
@@ -385,10 +385,10 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
 <div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="softdevice__handler_8c.html#a9485d8b6a0f1c044e0118082f6815fbe">  292</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="softdevice__handler_8c.html#a9485d8b6a0f1c044e0118082f6815fbe">SWI2_IRQHandler</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;{</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordflow">if</span> (m_evt_schedule_func != <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordflow">if</span> (m_evt_schedule_func != NULL)</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    {</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        uint32_t err_code = m_evt_schedule_func();</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        <a class="code" href="_ladybug__error_8h.html#a29da4671646041bbb4a7c4c7bbb7ea53">APP_ERROR_CHECK</a>(err_code);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        APP_ERROR_CHECK(err_code);</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    }</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
@@ -397,10 +397,7 @@ $(document).ready(function(){initNavTree('softdevice__handler_8c_source.html',''
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
 <div class="ttc" id="softdevice__handler_8c_html_a200d4e1f1c70a46e6de6343f0a7d84b1"><div class="ttname"><a href="softdevice__handler_8c.html#a200d4e1f1c70a46e6de6343f0a7d84b1">softdevice_sys_evt_handler_set</a></div><div class="ttdeci">uint32_t softdevice_sys_evt_handler_set(sys_evt_handler_t sys_evt_handler)</div><div class="ttdef"><b>Definition:</b> <a href="softdevice__handler_8c_source.html#l00275">softdevice_handler.c:275</a></div></div>
 <div class="ttc" id="softdevice__handler_8c_html_a33d6c5c2cf0d6cd1e89ef172d75e0975"><div class="ttname"><a href="softdevice__handler_8c.html#a33d6c5c2cf0d6cd1e89ef172d75e0975">softdevice_handler_init</a></div><div class="ttdeci">uint32_t softdevice_handler_init(nrf_clock_lfclksrc_t clock_source, void *p_ble_evt_buffer, uint16_t ble_evt_buffer_size, softdevice_evt_schedule_func_t evt_schedule_func)</div><div class="ttdef"><b>Definition:</b> <a href="softdevice__handler_8c_source.html#l00189">softdevice_handler.c:189</a></div></div>
-<div class="ttc" id="_ladybug__error_8h_html_a29da4671646041bbb4a7c4c7bbb7ea53"><div class="ttname"><a href="_ladybug__error_8h.html#a29da4671646041bbb4a7c4c7bbb7ea53">APP_ERROR_CHECK</a></div><div class="ttdeci">#define APP_ERROR_CHECK(ERR_CODE)                                                  </div><div class="ttdoc">Macro for calling error handler function if supplied error code any other than NRF_SUCCESS. </div><div class="ttdef"><b>Definition:</b> <a href="_ladybug__error_8h_source.html#l00026">Ladybug_error.h:26</a></div></div>
-<div class="ttc" id="_ladybug__error_8h_html_acc506bf926a7d3a20f00bc1c24047fd9"><div class="ttname"><a href="_ladybug__error_8h.html#acc506bf926a7d3a20f00bc1c24047fd9">APP_ERROR_HANDLER</a></div><div class="ttdeci">#define APP_ERROR_HANDLER(ERR_CODE)                                              </div><div class="ttdef"><b>Definition:</b> <a href="_ladybug__error_8h_source.html#l00010">Ladybug_error.h:10</a></div></div>
-<div class="ttc" id="_s_e_g_g_e_r___r_t_t_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="_s_e_g_g_e_r___r_t_t_8c_source.html#l00084">SEGGER_RTT.c:84</a></div></div>
-<div class="ttc" id="main_8c_html_a4df3b6dd09cac7a9c1705e80fcb735cb"><div class="ttname"><a href="main_8c.html#a4df3b6dd09cac7a9c1705e80fcb735cb">assert_nrf_callback</a></div><div class="ttdeci">void assert_nrf_callback(uint16_t line_num, const uint8_t *p_file_name)</div><div class="ttdoc">Callback function for asserts in the SoftDevice. </div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00081">main.c:81</a></div></div>
+<div class="ttc" id="main_8c_html_a4df3b6dd09cac7a9c1705e80fcb735cb"><div class="ttname"><a href="main_8c.html#a4df3b6dd09cac7a9c1705e80fcb735cb">assert_nrf_callback</a></div><div class="ttdeci">void assert_nrf_callback(uint16_t line_num, const uint8_t *p_file_name)</div><div class="ttdoc">Callback function for asserts in the SoftDevice. </div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00095">main.c:95</a></div></div>
 <div class="ttc" id="softdevice__handler_8c_html_a9485d8b6a0f1c044e0118082f6815fbe"><div class="ttname"><a href="softdevice__handler_8c.html#a9485d8b6a0f1c044e0118082f6815fbe">SWI2_IRQHandler</a></div><div class="ttdeci">void SWI2_IRQHandler(void)</div><div class="ttdoc">Function for handling the Application&#39;s BLE Stack events interrupt. </div><div class="ttdef"><b>Definition:</b> <a href="softdevice__handler_8c_source.html#l00292">softdevice_handler.c:292</a></div></div>
 <div class="ttc" id="softdevice__handler_8c_html_a10727fc85120a0d48eb5be73749fd856"><div class="ttname"><a href="softdevice__handler_8c.html#a10727fc85120a0d48eb5be73749fd856">intern_softdevice_events_execute</a></div><div class="ttdeci">void intern_softdevice_events_execute(void)</div><div class="ttdef"><b>Definition:</b> <a href="softdevice__handler_8c_source.html#l00066">softdevice_handler.c:66</a></div></div>
 <div class="ttc" id="softdevice__handler_8c_html_a26d82eb7a8b9e1ad28fded69097d22a3"><div class="ttname"><a href="softdevice__handler_8c.html#a26d82eb7a8b9e1ad28fded69097d22a3">softdevice_assertion_handler</a></div><div class="ttdeci">void softdevice_assertion_handler(uint32_t pc, uint16_t line_num, const uint8_t *file_name)</div><div class="ttdoc">Callback function for asserts in the SoftDevice. </div><div class="ttdef"><b>Definition:</b> <a href="softdevice__handler_8c_source.html#l00059">softdevice_handler.c:59</a></div></div>

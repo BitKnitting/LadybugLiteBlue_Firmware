@@ -1,3 +1,10 @@
 <map id="app_timer_stop" name="app_timer_stop">
-<area shape="rect" id="node2" href="$ble__conn__params_8c.html#a5f6590546ae62fdfc802236be684428f" title="ble_conn_params_stop" alt="" coords="168,5,328,32"/>
+<area shape="rect" id="node2" href="$ble__conn__params_8c.html#a5f6590546ae62fdfc802236be684428f" title="ble_conn_params_stop" alt="" coords="168,51,328,77"/>
+<area shape="rect" id="node3" href="$_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="206,101,290,128"/>
+<area shape="rect" id="node4" href="$_ladybug___flash_8h.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="377,69,516,96"/>
+<area shape="rect" id="node9" href="$_ladybug___flash_8h.html#a897602858d3220b0945ed08fdd09ca26" title="When the Ladybug needs to store info, it calls the flash_write routine. " alt="" coords="377,132,517,159"/>
+<area shape="rect" id="node5" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="591,5,745,32"/>
+<area shape="rect" id="node6" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="566,56,770,83"/>
+<area shape="rect" id="node7" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="577,107,759,133"/>
+<area shape="rect" id="node8" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="819,132,869,159"/>
 </map>

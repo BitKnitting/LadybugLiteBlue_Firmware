@@ -397,10 +397,10 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> timeout_handler_exec(<a class="code" href="structtimer__node__t.html">timer_node_t</a> * p_timer)</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;{</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (m_evt_schedule_func != <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (m_evt_schedule_func != NULL)</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    {</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        uint32_t err_code = m_evt_schedule_func(p_timer-&gt;<a class="code" href="structtimer__node__t.html#acc5ff114e08b2ee1ce03e35e329bbccd">p_timeout_handler</a>, p_timer-&gt;<a class="code" href="structtimer__node__t.html#a1c66c84f8ecb4108827e099f14e76450">p_context</a>);</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <a class="code" href="_ladybug__error_8h.html#a29da4671646041bbb4a7c4c7bbb7ea53">APP_ERROR_CHECK</a>(err_code);</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        APP_ERROR_CHECK(err_code);</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    }</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    {</div>
@@ -809,7 +809,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;    <span class="keywordflow">if</span> (last == p_user-&gt;<a class="code" href="structtimer__user__t.html#a69cba9e32a4c651b35b06f11b49e59d8">first</a>)</div>
 <div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;    {</div>
 <div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        <span class="comment">// Queue is full.</span></div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;    }</div>
 <div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;    </div>
 <div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;    *p_last_index = last;    </div>
@@ -828,7 +828,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;    app_timer_id_t last_index;</div>
 <div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;    </div>
 <div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;    <a class="code" href="structtimer__user__op__t.html">timer_user_op_t</a> * p_user_op = user_op_alloc(&amp;mp_users[user_id], &amp;last_index);</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;    <span class="keywordflow">if</span> (p_user_op == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;    <span class="keywordflow">if</span> (p_user_op == NULL)</div>
 <div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;    {</div>
 <div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NO_MEM;</div>
 <div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;    }</div>
@@ -853,7 +853,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;    app_timer_id_t last_index;</div>
 <div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    </div>
 <div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    <a class="code" href="structtimer__user__op__t.html">timer_user_op_t</a> * p_user_op = user_op_alloc(&amp;mp_users[user_id], &amp;last_index);</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <span class="keywordflow">if</span> (p_user_op == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <span class="keywordflow">if</span> (p_user_op == NULL)</div>
 <div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    {</div>
 <div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NO_MEM;</div>
 <div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    }</div>
@@ -874,7 +874,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;    app_timer_id_t last_index;</div>
 <div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;    </div>
 <div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;    <a class="code" href="structtimer__user__op__t.html">timer_user_op_t</a> * p_user_op = user_op_alloc(&amp;mp_users[user_id], &amp;last_index);</div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;    <span class="keywordflow">if</span> (p_user_op == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;    <span class="keywordflow">if</span> (p_user_op == NULL)</div>
 <div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    {</div>
 <div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_NO_MEM;</div>
 <div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;    }</div>
@@ -925,7 +925,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_PARAM;</div>
 <div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;    }</div>
 <div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;    <span class="comment">// Check for NULL buffer</span></div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;    <span class="keywordflow">if</span> (p_buffer == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;    <span class="keywordflow">if</span> (p_buffer == NULL)</div>
 <div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;    {</div>
 <div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_PARAM;</div>
 <div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;    }</div>
@@ -992,15 +992,15 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;    <span class="keywordtype">int</span> i;</div>
 <div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;</div>
 <div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;    <span class="comment">// Check state and parameters</span></div>
-<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == NULL)</div>
 <div class="line"><a name="l01021"></a><span class="lineno"> 1021</span>&#160;    {</div>
 <div class="line"><a name="l01022"></a><span class="lineno"> 1022</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_STATE;</div>
 <div class="line"><a name="l01023"></a><span class="lineno"> 1023</span>&#160;    }</div>
-<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;    <span class="keywordflow">if</span> (timeout_handler == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01024"></a><span class="lineno"> 1024</span>&#160;    <span class="keywordflow">if</span> (timeout_handler == NULL)</div>
 <div class="line"><a name="l01025"></a><span class="lineno"> 1025</span>&#160;    {</div>
 <div class="line"><a name="l01026"></a><span class="lineno"> 1026</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_PARAM;</div>
 <div class="line"><a name="l01027"></a><span class="lineno"> 1027</span>&#160;    }</div>
-<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;    <span class="keywordflow">if</span> (p_timer_id == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01028"></a><span class="lineno"> 1028</span>&#160;    <span class="keywordflow">if</span> (p_timer_id == NULL)</div>
 <div class="line"><a name="l01029"></a><span class="lineno"> 1029</span>&#160;    {</div>
 <div class="line"><a name="l01030"></a><span class="lineno"> 1030</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_PARAM;</div>
 <div class="line"><a name="l01031"></a><span class="lineno"> 1031</span>&#160;    }    </div>
@@ -1053,7 +1053,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;    uint32_t timeout_periodic;</div>
 <div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;    </div>
 <div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;    <span class="comment">// Check state and parameters</span></div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == NULL)</div>
 <div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;    {</div>
 <div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_STATE;</div>
 <div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;    }</div>
@@ -1080,7 +1080,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l01109"></a><span class="lineno"><a class="line" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c"> 1109</a></span>&#160;uint32_t <a class="code" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c">app_timer_stop</a>(app_timer_id_t timer_id)</div>
 <div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;{</div>
 <div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;    <span class="comment">// Check state and parameters</span></div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == NULL)</div>
 <div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;    {</div>
 <div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_STATE;</div>
 <div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;    }</div>
@@ -1101,7 +1101,7 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="line"><a name="l01130"></a><span class="lineno"><a class="line" href="app__timer_8c.html#ac3c9d0975a786efe561a7be1eb37f247"> 1130</a></span>&#160;uint32_t <a class="code" href="app__timer_8c.html#ac3c9d0975a786efe561a7be1eb37f247">app_timer_stop_all</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;{</div>
 <div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;    <span class="comment">// Check state</span></div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;    <span class="keywordflow">if</span> (mp_nodes == NULL)</div>
 <div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;    {</div>
 <div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;        <span class="keywordflow">return</span> NRF_ERROR_INVALID_STATE;</div>
 <div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;    }</div>
@@ -1142,7 +1142,6 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="ttc" id="structtimer__user__op__start__t_html"><div class="ttname"><a href="structtimer__user__op__start__t.html">timer_user_op_start_t</a></div><div class="ttdoc">Structure describing a timer start operation. </div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00076">app_timer.c:76</a></div></div>
 <div class="ttc" id="structtimer__node__t_html_aaff4c95a6ffb1ed1b8ffffd8e9d08b95"><div class="ttname"><a href="structtimer__node__t.html#aaff4c95a6ffb1ed1b8ffffd8e9d08b95">timer_node_t::mode</a></div><div class="ttdeci">app_timer_mode_t mode</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00052">app_timer.c:52</a></div></div>
 <div class="ttc" id="app__timer_8c_html_a69b09d8abae8e35a3583de3487336644"><div class="ttname"><a href="app__timer_8c.html#a69b09d8abae8e35a3583de3487336644">APP_LOW_USER_ID</a></div><div class="ttdeci">#define APP_LOW_USER_ID</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00034">app_timer.c:34</a></div></div>
-<div class="ttc" id="_ladybug__error_8h_html_a29da4671646041bbb4a7c4c7bbb7ea53"><div class="ttname"><a href="_ladybug__error_8h.html#a29da4671646041bbb4a7c4c7bbb7ea53">APP_ERROR_CHECK</a></div><div class="ttdeci">#define APP_ERROR_CHECK(ERR_CODE)                                                  </div><div class="ttdoc">Macro for calling error handler function if supplied error code any other than NRF_SUCCESS. </div><div class="ttdef"><b>Definition:</b> <a href="_ladybug__error_8h_source.html#l00026">Ladybug_error.h:26</a></div></div>
 <div class="ttc" id="app__timer_8c_html_a3bfa72c391fc6cdcbbf0df79c0ca30a9"><div class="ttname"><a href="app__timer_8c.html#a3bfa72c391fc6cdcbbf0df79c0ca30a9">RTC1_IRQ_PRI</a></div><div class="ttdeci">#define RTC1_IRQ_PRI</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00023">app_timer.c:23</a></div></div>
 <div class="ttc" id="app__timer_8c_html_a3f5657dabe86454e3d1cb548f83f6e21"><div class="ttname"><a href="app__timer_8c.html#a3f5657dabe86454e3d1cb548f83f6e21">CONTEXT_QUEUE_SIZE_MAX</a></div><div class="ttdeci">#define CONTEXT_QUEUE_SIZE_MAX</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00127">app_timer.c:127</a></div></div>
 <div class="ttc" id="app__timer_8c_html_aa6e360c508790ef1beddd100ace03bbaa76c8b26711d5c013f3799cd0d4cbe685"><div class="ttname"><a href="app__timer_8c.html#aa6e360c508790ef1beddd100ace03bbaa76c8b26711d5c013f3799cd0d4cbe685">STATE_ALLOCATED</a></div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00045">app_timer.c:45</a></div></div>
@@ -1150,7 +1149,6 @@ $(document).ready(function(){initNavTree('app__timer_8c_source.html','');});
 <div class="ttc" id="app__timer_8c_html_a83fe582f481aa2890ee45eebf85be0b0"><div class="ttname"><a href="app__timer_8c.html#a83fe582f481aa2890ee45eebf85be0b0">timer_user_op_type_t</a></div><div class="ttdeci">timer_user_op_type_t</div><div class="ttdoc">Set of available timer operation types. </div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00067">app_timer.c:67</a></div></div>
 <div class="ttc" id="structtimer__node__t_html_a198c87e5cc72b296f59da6d2f48a9a89"><div class="ttname"><a href="structtimer__node__t.html#a198c87e5cc72b296f59da6d2f48a9a89">timer_node_t::next</a></div><div class="ttdeci">app_timer_id_t next</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00060">app_timer.c:60</a></div></div>
 <div class="ttc" id="app__timer_8c_html_a89a2b9fd07d66bdc3c396ff87bc7ab27"><div class="ttname"><a href="app__timer_8c.html#a89a2b9fd07d66bdc3c396ff87bc7ab27">RTC_COMPARE_OFFSET_MIN</a></div><div class="ttdeci">#define RTC_COMPARE_OFFSET_MIN</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00037">app_timer.c:37</a></div></div>
-<div class="ttc" id="_s_e_g_g_e_r___r_t_t_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="_s_e_g_g_e_r___r_t_t_8c_source.html#l00084">SEGGER_RTT.c:84</a></div></div>
 <div class="ttc" id="structtimer__node__t_html_ae3655692872e9fce63f866f79bd04f7b"><div class="ttname"><a href="structtimer__node__t.html#ae3655692872e9fce63f866f79bd04f7b">timer_node_t::ticks_first_interval</a></div><div class="ttdeci">uint32_t ticks_first_interval</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00055">app_timer.c:55</a></div></div>
 <div class="ttc" id="app__timer_8c_html_aa6e360c508790ef1beddd100ace03bba"><div class="ttname"><a href="app__timer_8c.html#aa6e360c508790ef1beddd100ace03bba">timer_alloc_state_t</a></div><div class="ttdeci">timer_alloc_state_t</div><div class="ttdoc">Timer allocation state type. </div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l00042">app_timer.c:42</a></div></div>
 <div class="ttc" id="app__timer_8c_html_ac3c9d0975a786efe561a7be1eb37f247"><div class="ttname"><a href="app__timer_8c.html#ac3c9d0975a786efe561a7be1eb37f247">app_timer_stop_all</a></div><div class="ttdeci">uint32_t app_timer_stop_all(void)</div><div class="ttdef"><b>Definition:</b> <a href="app__timer_8c_source.html#l01130">app_timer.c:1130</a></div></div>

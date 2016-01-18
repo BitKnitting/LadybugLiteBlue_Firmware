@@ -1,6 +1,9 @@
 <map id="ladybug_get_calibrationValues" name="ladybug_get_calibrationValues">
-<area shape="rect" id="node2" href="$_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="259,5,445,32"/>
-<area shape="rect" id="node4" href="$main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22" title="flash_read" alt="" coords="310,56,394,83"/>
-<area shape="rect" id="node3" href="$_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="494,5,645,32"/>
-<area shape="rect" id="node5" href="$pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="516,56,623,83"/>
+<area shape="rect" id="node2" href="$_ladybug___flash_8c.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="259,56,397,83"/>
+<area shape="rect" id="node8" href="$_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c" title="call back from Ladybug_Flash.c to let us know if the flash read was successful (or not) ..." alt="" coords="273,107,383,133"/>
+<area shape="rect" id="node3" href="$_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="456,5,541,32"/>
+<area shape="rect" id="node5" href="$pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="445,56,552,83"/>
+<area shape="rect" id="node6" href="$_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="457,107,541,133"/>
+<area shape="rect" id="node4" href="$app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="600,5,715,32"/>
+<area shape="rect" id="node7" href="$app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="601,107,714,133"/>
 </map>

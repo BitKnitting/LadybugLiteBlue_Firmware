@@ -1,0 +1,8 @@
+<map id="ladybug_flash_init" name="ladybug_flash_init">
+<area shape="rect" id="node2" href="$pstorage_8c.html#a729ef8b64fc0cb6bfdabb2543a565d32" title="pstorage_init" alt="" coords="233,5,332,32"/>
+<area shape="rect" id="node3" href="$_ladybug___flash_8c.html#a7a642ea5fc1cff459a3dc58801979b97" title="This is the callback function that pstorage calls back to when a Flash event has completed for the bl..." alt="" coords="205,56,361,83"/>
+<area shape="rect" id="node4" href="$pstorage_8c.html#a0a57b964c8945eaca2d267835ef6688c" title="pstorage_register" alt="" coords="220,107,345,133"/>
+<area shape="rect" id="node5" href="$pstorage_8c.html#afdeeb475e4f2db19863226bc55d507b5" title="pstorage_block_identifier_get" alt="" coords="185,157,381,184"/>
+<area shape="rect" id="node6" href="$_ladybug___flash_8c.html#aa01c194ad6388cfa42159609d19fc59e" title="create a timer to be used before a call to write/read to flash in case the flash action doesn&#39;t happe..." alt="" coords="235,208,331,235"/>
+<area shape="rect" id="node7" href="$app__timer_8c.html#a8aa81f9e8bde352865be0502c7037592" title="app_timer_create" alt="" coords="429,208,555,235"/>
+</map>

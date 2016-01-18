@@ -5,6 +5,7 @@
  * \brief	Establishes the BLE characteristics and handles BLE requests from the client (AKA Central).
  * \details	The "original guts" came from the nrf51-ble-app-lbs-master example on Nordic's GitHub.
  */
+#define	DEBUG	///< Used in app_error.h to give line / function name input.
 #include "Ladybug_BLE.h"
 #include <string.h>
 #include "nordic_common.h"
@@ -13,7 +14,7 @@
 #include "app_util.h"
 #include "Ladybug_ADC.h"
 #include "Ladybug_Hydro.h"
-#include "Ladybug_error.h"
+#include "app_error.h"
 #include "SEGGER_RTT.h"
 
 extern ADC_interface adc;

@@ -232,11 +232,10 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((((ID)-&gt;module_id) &gt;= PSTORAGE_NUM_OF_PAGES) ||                                       \</div>
-<div class="line">            (m_app_table[(ID)-&gt;module_id].cb == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>))                                            \</div>
+<div class="line">            (m_app_table[(ID)-&gt;module_id].cb == NULL))                                            \</div>
 <div class="line">        {                                                                                         \</div>
 <div class="line">            return NRF_ERROR_INVALID_PARAM;                                                       \</div>
 <div class="line">        }</div>
-<div class="ttc" id="_s_e_g_g_e_r___r_t_t_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="_s_e_g_g_e_r___r_t_t_8c_source.html#l00084">SEGGER_RTT.c:84</a></div></div>
 </div><!-- fragment -->
 <p>Verifies that the module identifier supplied by the application is within permissible range. </p>
 
@@ -257,11 +256,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((PARAM) == <a class="code" href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)                                                                      \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ((PARAM) == NULL)                                                                      \</div>
 <div class="line">        {                                                                                         \</div>
 <div class="line">            return NRF_ERROR_NULL;                                                                \</div>
 <div class="line">        }</div>
-<div class="ttc" id="_s_e_g_g_e_r___r_t_t_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="_s_e_g_g_e_r___r_t_t_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="_s_e_g_g_e_r___r_t_t_8c_source.html#l00084">SEGGER_RTT.c:84</a></div></div>
 </div><!-- fragment -->
 <p>Check if the input pointer is NULL, if so it returns NRF_ERROR_NULL. </p>
 

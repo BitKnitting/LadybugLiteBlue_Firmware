@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ring_5fbuffer',['RING_BUFFER',['../struct_r_i_n_g___b_u_f_f_e_r.html',1,'']]]
+  ['storecalibrationvalues_5ft',['storeCalibrationValues_t',['../structstore_calibration_values__t.html',1,'']]],
+  ['storeplantinfo_5ft',['storePlantInfo_t',['../structstore_plant_info__t.html',1,'']]]
 ];

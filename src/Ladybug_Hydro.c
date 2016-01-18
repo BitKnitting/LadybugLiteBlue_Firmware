@@ -1,3 +1,4 @@
+
 /**
  * \file 	Ladybug_Hydro.c
  * \author	Margaret Johnson
@@ -5,16 +6,19 @@
  * \brief	Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client.
  * \todo		Take multiple measurements (e.g.: 2 mins) when reading calibration measurements, until readings converge.
  */
+#define	DEBUG	///< Used in app_error.h to give line / function name input.
 #include "string.h"
 #include "nrf_gpio.h"
 #include <stdint.h>
 #include <stdbool.h>
-#include "app_error.h"
 #include "softdevice_handler.h"
 #include "ble_advertising.h"
+#include "app_error.h"
+#include "Ladybug_Error.h"
 #include "Ladybug_Flash.h"
 #include "Ladybug_ADC.h"
 #include "Ladybug_Hydro.h"
+
 #include "SEGGER_RTT.h"
 
 
@@ -30,9 +34,12 @@ static char 			 m_device_name[DEVNAME_MAX_LEN]; ///<The length of the device nam
 /**
  * \brief mapping the FET pins to the schematic
  */
-#define EC_VIN_FET	0
-#define EC_VOUT_FET	7
-
+static uint32_t	m_EC_VIN_FET	=	0;
+static uint32_t m_EC_VOUT_FET	=	7;
+/**
+ * \callgraph
+ * \brief used during debugging to find out what the calibration values are
+ */
 static void print_out_calibration_values() {
   SEGGER_RTT_WriteString(0,"***** CALIBRATION VALUES *****\n");
   SEGGER_RTT_printf(0,"size of m_storeCalibrationValues: %d\n",sizeof(m_storeCalibrationValues));
@@ -45,19 +52,35 @@ static void print_out_calibration_values() {
   SEGGER_RTT_printf(0,"EC1solution: %d, EC2solution: %d\n", m_storeCalibrationValues.calValues.EC1solution,m_storeCalibrationValues.calValues.EC2solution);
 }
 /**
+ * \callgraph
+ * \brief call back from Ladybug_Flash.c to let us know if the flash read was successful (or not)
+ * @param err_code	0 if successful
+ */
+void did_flash_read(uint32_t err_code) {
+  if (err_code == 0) {
+      SEGGER_RTT_WriteString(0,"...Flash read SUCCESS!");
+  }
+  else {
+      APP_ERROR_HANDLER(err_code);
+  }
+}
+/**
  * \brief The rectifier circuit for both EC VIN and VOUT have a FET attached to drain the cap as the cap will inevitably discharge causing voltage readings to be higher than they
  * actually are.  This is a standard "thing" for a rectifier circuit.  As I understand it, many rectifiers use a resistor but I felt using a FET would get a better ADC reading.
- * @param which_AIN
+ * @param which_AIN	Either the AIN assigned to EC_VIN or EC_VOUTa
  */
 static void discharge (uint8_t which_AIN)
 {
+  if (EC_VIN != which_AIN && EC_VOUT != which_AIN) {
+      APP_ERROR_HANDLER(LADYBUG_ERROR_INVALID_COMMAND);
+  }
   uint32_t pin_number;
   //set the GPIO based on whether the current ADC reading is for the VIN or VOUT
   if (EC_VIN == which_AIN) {
-      pin_number = EC_VIN_FET;
+      pin_number = m_EC_VIN_FET;
   }
   else {
-      pin_number = EC_VOUT_FET;
+      pin_number = m_EC_VOUT_FET;
   }
   //configure the GPIO for output
   nrf_gpio_cfg_output(pin_number);
@@ -66,6 +89,12 @@ static void discharge (uint8_t which_AIN)
   //open the FET's gate so the ADC picks up an accurate measurement
   nrf_gpio_pin_clear(pin_number);
 }
+/**
+ * \callgraph
+ * \brief Assumes the pH probe is in a nutrient bath.  Reads the AIN value assigned for the pH probe as well as the VGND
+ * used since the power source does not go negative.
+ * @return	The pH reading in mV.
+ */
 static int16_t get_pH_reading() {
   int16_t VGND = adc.read(pH_VGND);
   int16_t AIN = adc.read(pH_AIN);
@@ -81,6 +110,9 @@ static int16_t get_pH_reading() {
  * @param p_EC		A pointer to two int16_t values.  The first will store the VIN reading.  The second will store the VOUNT reading
  */
 static void get_EC_reading(int16_t *p_EC) {
+  if (p_EC == NULL){  //Shouldn't be passing in a null pointer given the EC Vin and Vout values are planned to be stored at this memory location.
+      APP_ERROR_HANDLER(LADYBUG_ERROR_NULL_POINTER);
+  }
   SEGGER_RTT_WriteString(0,"---> IN get_EC_reading\n");
   int16_t VGND = adc.read(EC_VGND);
   SEGGER_RTT_printf(0,"EC_VGND: %d  0X%x\n",VGND,VGND);
@@ -97,27 +129,6 @@ static void get_EC_reading(int16_t *p_EC) {
   *(p_EC+1) = AIN-VGND;
   SEGGER_RTT_printf(0,"EC_VOUT after subtracting VGND: %d 0X%x\n", *(p_EC+1),*(p_EC+1));
 }
-
-/**
- * \callgraph
- * \brief Read the plant type and stage stored in flash.  If a write check has not been written, then set the plant type and stage to
- * default strings.
- */
-void ladybug_get_plantInfo(plantInfo_t **p_plantInfo)
-{
-  SEGGER_RTT_WriteString(0,"\n***--->>> in ladybug_get_plantInfo_values\n");
-  *p_plantInfo = &m_storePlantInfo.plantChar.plantInfo;
-  ladybug_flash_read(plantInfo,m_storePlantInfo.plantChar.bytes);
-  if (m_storePlantInfo.write_check != WRITE_CHECK){
-      //set plant type and stage to ??
-      SEGGER_RTT_WriteString(0,"...setting plantStore bytes\n");
-      //the flash storage for plant info is 32 bytes - which is the BLOCK_SIZE
-      memset(&m_storePlantInfo, '?', BLOCK_SIZE);
-      m_storePlantInfo.write_check = WRITE_CHECK;
-      m_write_plantInfo_values = true;
-  }
-}
-
 /**
  * \brief the central has requested calibrating either the pH or EC probe.  First decide what calibration solution the probe is in.  This
  * could be a pH4, pH7, EC1, or EC2 calibration solution.  Calculating the pH and EC happens on the client.  In this function the mV readings
@@ -126,6 +137,9 @@ void ladybug_get_plantInfo(plantInfo_t **p_plantInfo)
  */
 void ladybug_update_calibration_value(control_enum_t command, int solutionValue){
   SEGGER_RTT_printf(0,"---> in ladybug_update_calibration_value.  command: %d, solution value: %d\n",command,solutionValue);
+  if (command != calibratePH4 && command != calibratepH7 &&  command != calibrateEC1 && command != calibrateEC2){
+      APP_ERROR_HANDLER(LADYBUG_ERROR_INVALID_COMMAND);
+  }
   //pH calibration comes from a simple reading of the pH AIN
   //there is no additional calibration values that need to be stored since calibration is fixed on using the two points: pH4 and pH7.
   if (command == calibratePH4 || command == calibratepH7) {
@@ -169,6 +183,9 @@ void ladybug_update_calibration_value(control_enum_t command, int solutionValue)
  */
 void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
   SEGGER_RTT_printf(0,"---> in ladybug_undo_pH_calibration.  pHCalValue: %d\n",pHCalValue);
+  if (command != undoPH4 && command != undoPH7) {
+      APP_ERROR_HANDLER(LADYBUG_ERROR_INVALID_COMMAND);
+  }
   if (command == undoPH4) {
       m_storeCalibrationValues.calValues.pH4_mV = pHCalValue;
   } else {
@@ -182,6 +199,9 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
    * \brief OOps!  The central wants the last value stored for either EC1 or EC2 calibration measurement
    */
   void ladybug_undo_EC_calibration(control_enum_t command, int16_t EC_Vin, int16_t EC_Vout) {
+    if (command != undoEC1 && command != undoEC2) {
+	APP_ERROR_HANDLER(LADYBUG_ERROR_INVALID_COMMAND);
+    }
     if (command == undoEC1) {
 	m_storeCalibrationValues.calValues.EC1_mV[0] = EC_Vin;
 	m_storeCalibrationValues.calValues.EC1_mV[1] = EC_Vout;
@@ -239,13 +259,36 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
     m_write_calibration_values = true;
   }
   /**
+   * \callgraph
+   * \brief Read the plant type and stage stored in flash.  If a write check has not been written, then set the plant type and stage to
+   * default strings.
+   * \details By using a pointer (p_plantInfo) that points to the address of another pointer (@m_storePlantInfo) i.e.: a pointer to pointer or
+   * a double pointer, passing around a .c global variable between .c files is avoided.
+   */
+  void ladybug_get_plantInfo(plantInfo_t **p_plantInfo)
+  {
+    SEGGER_RTT_WriteString(0,"\n***--->>> in ladybug_get_plantInfo_values\n");
+    // Not checking m_storePlantInfo because it has to exist or the compiler would complain.
+    *p_plantInfo = &m_storePlantInfo.plantChar.plantInfo;
+    ladybug_flash_read(plantInfo,m_storePlantInfo.plantChar.bytes,did_flash_read);
+    if (m_storePlantInfo.write_check != WRITE_CHECK){
+        //set plant type and stage to ??
+        SEGGER_RTT_WriteString(0,"...setting plantStore bytes\n");
+        //the flash storage for plant info is 32 bytes - which is the BLOCK_SIZE
+        memset(&m_storePlantInfo, '?', BLOCK_SIZE);
+        m_storePlantInfo.write_check = WRITE_CHECK;
+        m_write_plantInfo_values = true;
+    }
+  }
+  /**
    * read the calibration measurements for mV for pH4, pH7, EC1[2], and EC2[2], EC1solution, EC2solution from flash
    * @param p_calibrationValues
    */
   void ladybug_get_calibrationValues(calibrationValues_t **p_calibrationValues) {
     SEGGER_RTT_WriteString(0,"--> IN ladybug_get_calibrationValues\n");
+    // Not checking m_storeCalibrationValues because it has to exist or the compiler would complain.
     *p_calibrationValues = &m_storeCalibrationValues.calValues;
-    ladybug_flash_read(calibrationValues,(uint8_t *)&m_storeCalibrationValues.calValues);
+    ladybug_flash_read(calibrationValues,(uint8_t *)&m_storeCalibrationValues.calValues,did_flash_read);
     if (m_storeCalibrationValues.write_check != WRITE_CHECK){
 	//calibration values have not been stored
 	m_storeCalibrationValues.write_check = WRITE_CHECK;
@@ -259,6 +302,7 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
    */
   void ladybug_get_measurements(measurements_t **p_measurements) {
     SEGGER_RTT_WriteString(0,"\n***--->>> in ladybug_get_measurements\n");
+    // Not checking m_measurements because it has to exist or the compiler would complain.
     *p_measurements = &m_measurements;
     m_measurements.pH_mV = get_pH_reading();
     get_EC_reading(m_measurements.EC_mV);
@@ -270,6 +314,7 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
    * @param p_calibrationValues
    */
   void ladybug_get_calibration_values_memory_location(calibrationValues_t **p_calibrationValues) {
+    // Not checking m_storeCalibrationValues because it has to exist or the compiler would complain.
     *p_calibrationValues = &m_storeCalibrationValues.calValues;
   }
   /***
@@ -310,10 +355,10 @@ void ladybug_undo_pH_calibration(control_enum_t command, int16_t pHCalValue) {
     return false;
   }
   void ladybug_get_device_name(char **p_deviceName) {
-    SEGGER_RTT_WriteString(0,"---> IN ladybug_get_device_name");
+    SEGGER_RTT_WriteString(0,"---> IN ladybug_get_device_name\n");
     char device_name_in_storage_block[BLOCK_SIZE];
     memset(&device_name_in_storage_block, 0, BLOCK_SIZE);
-    ladybug_flash_read(deviceName,(uint8_t *)&device_name_in_storage_block);
+    ladybug_flash_read(deviceName,(uint8_t *)&device_name_in_storage_block,did_flash_read);
     uint8_t first_char_of_device_name = device_name_in_storage_block[0];
     if (0xFF == first_char_of_device_name){
 	memcpy(&device_name_in_storage_block,DEFAULT_DEVICE_NAME,sizeof(DEFAULT_DEVICE_NAME));

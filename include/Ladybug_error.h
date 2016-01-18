@@ -1,38 +1,15 @@
-/*
- * ladybug_error.h
- *
- *  Created on: Nov 12, 2015
- *      Author: margaret
+/**
+ * \file ladybug_error.h
+ * \brief Identifies the error codes that are specific to the Ladybug.
+ * \author  margaret johnson
  */
 
-#ifndef INCLUDE_LADYBUG_ERROR_H_
-#define INCLUDE_LADYBUG_ERROR_H_
-#include <stdint.h>
-#define APP_ERROR_HANDLER(ERR_CODE)                         \
-    do                                                      \
-    {                                                       \
-        app_error_handler((ERR_CODE), __LINE__, (uint8_t*) __FILE__);  \
-    } while (0)
-//#else
-//#define APP_ERROR_HANDLER(ERR_CODE)                         \
-//    do                                                      \
-//    {                                                       \
-//        app_error_handler((ERR_CODE), 0, 0);  \
-//    } while (0)
+//#ifndef INCLUDE_LADYBUG_ERROR_H_
+//#define INCLUDE_LADYBUG_ERROR_H_
+//ERROR CODES
+#define		LADYBUG_ERROR_FLASH_UNSURE_WHAT_DATA_TO_READ	101 ///<The function reading flash does not know what flash to read because the caller hasn't made this clear.
+#define		LADYBUG_ERROR_NUM_BYTES_TO_WRITE			102 ///<The caller has told the function an incorrect number of bytes to write (i.e.: <= 0).
+#define		LADYBUG_ERROR_NULL_POINTER			103 ///<A null pointer was passed into a function most likely to have it stuffed with a value.
+#define		LADYBUG_ERROR_INVALID_COMMAND			104 ///<A function was called passing in a command that was invalid for that function.
+#define		LADYBUG_ERROR_FLASH_ACTION_NOT_COMPLETED		105 ///<A call was made to a flash function in pstorage, but it did not finish before a timer went off.
 //#endif
-/**@brief Macro for calling error handler function if supplied error code any other than NRF_SUCCESS.
- *
- * @param[in] ERR_CODE Error code supplied to the error handler.
- */
-#define APP_ERROR_CHECK(ERR_CODE)                           \
-    do                                                      \
-    {                                                       \
-        const uint32_t LOCAL_ERR_CODE = (ERR_CODE);         \
-        if (LOCAL_ERR_CODE != NRF_SUCCESS)                  \
-        {                                                   \
-            APP_ERROR_HANDLER(LOCAL_ERR_CODE);              \
-        }                                                   \
-    } while (0)
-void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name);
-void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name);
-#endif /* INCLUDE_LADYBUG_ERROR_H_ */

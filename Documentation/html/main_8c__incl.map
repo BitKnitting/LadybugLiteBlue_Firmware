@@ -1,4 +1,5 @@
 <map id="src/main.c" name="src/main.c">
-<area shape="rect" id="node9" href="$ble__lbl__service_8h.html" title="ble_lbl_service.h" alt="" coords="142,80,263,107"/>
-<area shape="rect" id="node14" href="$_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1189,80,1315,107"/>
+<area shape="rect" id="node12" href="$_ladybug___b_l_e_8h.html" title="Ladybug_BLE.h" alt="" coords="463,80,581,107"/>
+<area shape="rect" id="node15" href="$_ladybug___flash_8h.html" title="Ladybug_Flash.h" alt="" coords="1320,80,1443,107"/>
+<area shape="rect" id="node17" href="$_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1468,80,1594,107"/>
 </map>

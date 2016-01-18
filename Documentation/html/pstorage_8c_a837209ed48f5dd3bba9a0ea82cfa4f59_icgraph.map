@@ -1,0 +1,4 @@
+<map id="pstorage_clear" name="pstorage_clear">
+<area shape="rect" id="node2" href="$_ladybug___flash_8h.html#a897602858d3220b0945ed08fdd09ca26" title="When the Ladybug needs to store info, it calls the flash_write routine. " alt="" coords="166,5,306,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="355,5,405,32"/>
+</map>

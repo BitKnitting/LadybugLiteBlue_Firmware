@@ -118,13 +118,15 @@ $(document).ready(function(){initNavTree('main_8c.html','');});
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;nordic_common.h&quot;</code><br />
 <code>#include &quot;softdevice_handler.h&quot;</code><br />
+<code>#include &quot;app_error.h&quot;</code><br />
 <code>#include &quot;ble.h&quot;</code><br />
 <code>#include &quot;ble_hci.h&quot;</code><br />
 <code>#include &quot;ble_advertising.h&quot;</code><br />
 <code>#include &quot;ble_conn_params.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="ble__lbl__service_8h_source.html">ble_lbl_service.h</a>&quot;</code><br />
+<code>#include &quot;nrf_drv_clock.h&quot;</code><br />
 <code>#include &quot;app_timer.h&quot;</code><br />
-<code>#include &quot;pstorage.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_ladybug___b_l_e_8h_source.html">Ladybug_BLE.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_ladybug___flash_8h_source.html">Ladybug_Flash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_ladybug___hydro_8h_source.html">Ladybug_Hydro.h</a>&quot;</code><br />
 <code>#include &quot;SEGGER_RTT.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -132,8 +134,9 @@ Include dependency graph for main.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c__incl.png" border="0" usemap="#src_2main_8c" alt=""/></div>
 <map name="src_2main_8c" id="src_2main_8c">
-<area shape="rect" id="node9" href="ble__lbl__service_8h.html" title="ble_lbl_service.h" alt="" coords="142,80,263,107"/>
-<area shape="rect" id="node14" href="_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1189,80,1315,107"/>
+<area shape="rect" id="node12" href="_ladybug___b_l_e_8h.html" title="Ladybug_BLE.h" alt="" coords="463,80,581,107"/>
+<area shape="rect" id="node15" href="_ladybug___flash_8h.html" title="Ladybug_Flash.h" alt="" coords="1320,80,1443,107"/>
+<area shape="rect" id="node17" href="_ladybug___hydro_8h.html" title="identifies the typedefs macros used for reading and packing hydro values (i.e.: the mV from the AINs ..." alt="" coords="1468,80,1594,107"/>
 </map>
 </div>
 </div>
@@ -141,17 +144,15 @@ Include dependency graph for main.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad72dbcf6d0153db1b8d8a58001feed83">DEBUG</a></td></tr>
+<tr class="memdesc:ad72dbcf6d0153db1b8d8a58001feed83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in app_error.h to give line / function name input.  <a href="#ad72dbcf6d0153db1b8d8a58001feed83">More...</a><br /></td></tr>
+<tr class="separator:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0ad4bcfe8e9edf6794e9a796378978a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac0ad4bcfe8e9edf6794e9a796378978a">IS_SRVC_CHANGED_CHARACT_PRESENT</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:ac0ad4bcfe8e9edf6794e9a796378978a"><td class="mdescLeft">&#160;</td><td class="mdescRight">if 0, the characteristics of a service can't be added/removed/modified. The central can figure out if a service characteristic's have changed.  <a href="#ac0ad4bcfe8e9edf6794e9a796378978a">More...</a><br /></td></tr>
 <tr class="separator:ac0ad4bcfe8e9edf6794e9a796378978a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adde0b932e57e128e4cd81c2dca47cfe3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#adde0b932e57e128e4cd81c2dca47cfe3">APP_ADV_INTERVAL</a>&#160;&#160;&#160;3200</td></tr>
 <tr class="memdesc:adde0b932e57e128e4cd81c2dca47cfe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">the interval between the LBL sending out advertising packets. According to the nAN-36v1.1.pdf, the interval can range from 20 ms to 10.24s  <a href="#adde0b932e57e128e4cd81c2dca47cfe3">More...</a><br /></td></tr>
 <tr class="separator:adde0b932e57e128e4cd81c2dca47cfe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af58371bad8e1be8e2323df60379ed2df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af58371bad8e1be8e2323df60379ed2df">APP_ADV_TIMEOUT_IN_SECONDS</a>&#160;&#160;&#160;0</td></tr>
-<tr class="memdesc:af58371bad8e1be8e2323df60379ed2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">the value for advertising time out can be between 1 and 0x3FFF seconds.  <a href="#af58371bad8e1be8e2323df60379ed2df">More...</a><br /></td></tr>
-<tr class="separator:af58371bad8e1be8e2323df60379ed2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bbff5bb0ca047b109e70a831f08e217"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7bbff5bb0ca047b109e70a831f08e217">APP_TIMER_PRESCALER</a>&#160;&#160;&#160;0</td></tr>
-<tr class="separator:a7bbff5bb0ca047b109e70a831f08e217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5accf4f59399fd2dd980e1569deac3e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad5accf4f59399fd2dd980e1569deac3e">APP_TIMER_MAX_TIMERS</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:ad5accf4f59399fd2dd980e1569deac3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a756f526e607f350705dc7a2e05027cf2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a756f526e607f350705dc7a2e05027cf2">APP_TIMER_OP_QUEUE_SIZE</a>&#160;&#160;&#160;4</td></tr>
@@ -164,12 +165,14 @@ Macros</h2></td></tr>
 <tr class="separator:a0c921a874ac37870fc1516ce66cd228a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a799412c2b531ca347e13611e6e7523b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a799412c2b531ca347e13611e6e7523b9">CONN_SUP_TIMEOUT</a>&#160;&#160;&#160;MSEC_TO_UNITS(4000, UNIT_10_MS)</td></tr>
 <tr class="separator:a799412c2b531ca347e13611e6e7523b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7204f7a367e8f1ac53ef62c4ad220efc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7204f7a367e8f1ac53ef62c4ad220efc">FIRST_CONN_PARAMS_UPDATE_DELAY</a>&#160;&#160;&#160;APP_TIMER_TICKS(20000, <a class="el" href="main_8c.html#a7bbff5bb0ca047b109e70a831f08e217">APP_TIMER_PRESCALER</a>)</td></tr>
+<tr class="memitem:a7204f7a367e8f1ac53ef62c4ad220efc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7204f7a367e8f1ac53ef62c4ad220efc">FIRST_CONN_PARAMS_UPDATE_DELAY</a>&#160;&#160;&#160;APP_TIMER_TICKS(20000, m_app_adv_timeout_in_seconds)</td></tr>
 <tr class="separator:a7204f7a367e8f1ac53ef62c4ad220efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf85796ef07632ed27e0bce9509d9245"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#adf85796ef07632ed27e0bce9509d9245">NEXT_CONN_PARAMS_UPDATE_DELAY</a>&#160;&#160;&#160;APP_TIMER_TICKS(5000, <a class="el" href="main_8c.html#a7bbff5bb0ca047b109e70a831f08e217">APP_TIMER_PRESCALER</a>)</td></tr>
+<tr class="memitem:adf85796ef07632ed27e0bce9509d9245"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#adf85796ef07632ed27e0bce9509d9245">NEXT_CONN_PARAMS_UPDATE_DELAY</a>&#160;&#160;&#160;APP_TIMER_TICKS(5000, m_app_adv_timeout_in_seconds)</td></tr>
 <tr class="separator:adf85796ef07632ed27e0bce9509d9245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34db81384bfbef23dedbef9bc6dfe46c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a34db81384bfbef23dedbef9bc6dfe46c">MAX_CONN_PARAMS_UPDATE_COUNT</a>&#160;&#160;&#160;3</td></tr>
 <tr class="separator:a34db81384bfbef23dedbef9bc6dfe46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a42d2d5bc11ba49000e048131c96f39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9a42d2d5bc11ba49000e048131c96f39">DEAD_BEEF</a>&#160;&#160;&#160;0xDEADBEEF</td></tr>
+<tr class="separator:a9a42d2d5bc11ba49000e048131c96f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c1fffb0f865552108560d4c63b32db1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7c1fffb0f865552108560d4c63b32db1">SEC_PARAM_TIMEOUT</a>&#160;&#160;&#160;30</td></tr>
 <tr class="separator:a7c1fffb0f865552108560d4c63b32db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbf03a82593c273743a5a80a1119b851"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#acbf03a82593c273743a5a80a1119b851">SEC_PARAM_BOND</a>&#160;&#160;&#160;1</td></tr>
@@ -184,11 +187,12 @@ Macros</h2></td></tr>
 <tr class="separator:a6b7b2e2f67fbf790f55b46f8f5e24ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2cd1595de153ea1d6d843619a1a7707"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af2cd1595de153ea1d6d843619a1a7707">SEC_PARAM_MAX_KEY_SIZE</a>&#160;&#160;&#160;16</td></tr>
 <tr class="separator:af2cd1595de153ea1d6d843619a1a7707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a42d2d5bc11ba49000e048131c96f39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9a42d2d5bc11ba49000e048131c96f39">DEAD_BEEF</a>&#160;&#160;&#160;0xDEADBEEF</td></tr>
-<tr class="separator:a9a42d2d5bc11ba49000e048131c96f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a8d9d4c58cc86d4a22a38790db39c16a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8d9d4c58cc86d4a22a38790db39c16a8">did_flash_write</a> (uint32_t err_code)</td></tr>
+<tr class="memdesc:a8d9d4c58cc86d4a22a38790db39c16a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">call back from <a class="el" href="_ladybug___flash_8c.html" title="Functions that read/write to/from the nRF51822&#39;s Flash. ">Ladybug_Flash.c</a> to let us know if the flash write was successful (or not)  <a href="#a8d9d4c58cc86d4a22a38790db39c16a8">More...</a><br /></td></tr>
+<tr class="separator:a8d9d4c58cc86d4a22a38790db39c16a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4df3b6dd09cac7a9c1705e80fcb735cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4df3b6dd09cac7a9c1705e80fcb735cb">assert_nrf_callback</a> (uint16_t line_num, const uint8_t *p_file_name)</td></tr>
 <tr class="memdesc:a4df3b6dd09cac7a9c1705e80fcb735cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for asserts in the SoftDevice.  <a href="#a4df3b6dd09cac7a9c1705e80fcb735cb">More...</a><br /></td></tr>
 <tr class="separator:a4df3b6dd09cac7a9c1705e80fcb735cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,8 +208,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a5683319a8ba34696c26f847a35ef7fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5683319a8ba34696c26f847a35ef7fe2">display_bytes</a> (uint8_t *dest_bytes, int num_bytes)</td></tr>
 <tr class="memdesc:a5683319a8ba34696c26f847a35ef7fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a helper function to easily print out the hex value of each byte within an array of bytes.  <a href="#a5683319a8ba34696c26f847a35ef7fe2">More...</a><br /></td></tr>
 <tr class="separator:a5683319a8ba34696c26f847a35ef7fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b90614aaa1fdfe20ae38290f7411f22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a3b90614aaa1fdfe20ae38290f7411f22">flash_read</a> (<a class="el" href="_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbd">flash_rw_t</a> data_to_read, uint8_t *p_bytes_to_read)</td></tr>
-<tr class="separator:a3b90614aaa1fdfe20ae38290f7411f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">I think of main as providing initialization and BLE event handling. One of the event handlers is used by the LBL's service and is defined in the service_init() function. service_init() calls into the LBL's BLE service's initialization code which identifies the UUIDs of the LBL service.  <a href="#a840291bc02cba5474a4cb46a9b9566fe">More...</a><br /></td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,6 +217,11 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Margaret Johnson </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>October, 2015 </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Used Nordic's nRF51 SDK v9 </dd>
+<dd>
+Used gcc-arm-none-eabi-4_9-2015q1 </dd>
+<dd>
+Used Eclipse Luna </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>TBD: Use the LED to give feedback on the state of the Ladybug. </dd></dl>
 
 <p>Definition in file <a class="el" href="main_8c_source.html">main.c</a>.</p>
@@ -234,24 +241,7 @@ Functions</h2></td></tr>
 <dd>
 the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 ms = 2 seconds </dd></dl>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00037">37</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af58371bad8e1be8e2323df60379ed2df"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define APP_ADV_TIMEOUT_IN_SECONDS&#160;&#160;&#160;0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>the value for advertising time out can be between 1 and 0x3FFF seconds. </p>
-<dl class="section note"><dt>Note</dt><dd>setting this value to 0 says "don't time out"...so i'm doing this because i want the LBL to always be discoverable (another reason why the adv interval should be large) </dd></dl>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00042">42</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00044">44</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -266,7 +256,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>BLE uses at least two timers... I set it to 4 (arbitrary) to give room...Bummer that all app timers need to be initialized here...A bit of a black art </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00044">44</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00056">56</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -281,22 +271,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Size of timer operation queues. (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00045">45</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7bbff5bb0ca047b109e70a831f08e217"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define APP_TIMER_PRESCALER&#160;&#160;&#160;0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Value of the RTC1 PRESCALER register. </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00043">43</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00057">57</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -311,7 +286,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Connection supervisory timeout (4 seconds). (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00052">52</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00064">64</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -326,7 +301,23 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Value used as error code on stack dump, can be used to identify stack location on stack unwind. </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00063">63</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00069">69</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad72dbcf6d0153db1b8d8a58001feed83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used in app_error.h to give line / function name input. </p>
+
+<p>Definition at line <a class="el" href="main_8c_source.html#l00015">15</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -335,13 +326,13 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define FIRST_CONN_PARAMS_UPDATE_DELAY&#160;&#160;&#160;APP_TIMER_TICKS(20000, <a class="el" href="main_8c.html#a7bbff5bb0ca047b109e70a831f08e217">APP_TIMER_PRESCALER</a>)</td>
+          <td class="memname">#define FIRST_CONN_PARAMS_UPDATE_DELAY&#160;&#160;&#160;APP_TIMER_TICKS(20000, m_app_adv_timeout_in_seconds)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (15 seconds). (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00053">53</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00065">65</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -358,7 +349,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 <p>if 0, the characteristics of a service can't be added/removed/modified. The central can figure out if a service characteristic's have changed. </p>
 <p>if 1, the service can change characteristics </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00030">30</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00037">37</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -373,7 +364,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Maximum acceptable connection interval (1 second). (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00050">50</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00062">62</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -388,7 +379,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Number of attempts before giving up the connection parameter negotiation. (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00055">55</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00067">67</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -403,7 +394,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Minimum acceptable connection interval (0.5 seconds). (copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00049">49</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00061">61</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -412,13 +403,13 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define NEXT_CONN_PARAMS_UPDATE_DELAY&#160;&#160;&#160;APP_TIMER_TICKS(5000, <a class="el" href="main_8c.html#a7bbff5bb0ca047b109e70a831f08e217">APP_TIMER_PRESCALER</a>)</td>
+          <td class="memname">#define NEXT_CONN_PARAMS_UPDATE_DELAY&#160;&#160;&#160;APP_TIMER_TICKS(5000, m_app_adv_timeout_in_seconds)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Time between each call to sd_ble_gap_conn_param_update after the first call (5 seconds).(copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00054">54</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00066">66</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -431,9 +422,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Perform bonding. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00057">57</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -446,9 +434,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>No I/O capabilities. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00059">59</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -461,9 +446,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Maximum encryption key size. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00062">62</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -476,9 +458,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Minimum encryption key size. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00061">61</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -491,9 +470,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Man In The Middle protection not required. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00058">58</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -506,9 +482,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Out Of Band data not available. (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00060">60</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -521,9 +494,6 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Timeout for Pairing Request or Security Request (in seconds). (copied from SDK examples) </p>
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00056">56</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -538,7 +508,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 </div><div class="memdoc">
 <p>Slave latency. (..gee great description :-) ! copied from SDK examples) </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00051">51</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00063">63</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -559,7 +529,7 @@ the interval is in units of 0.625ms. A value of 3,200 = 3,200*.625 -&gt; 2,000 m
 
 <p>Function for initializing the Advertising functionality. </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00218">218</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00238">238</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -600,18 +570,16 @@ Here is the caller graph for this function:</div>
 
 <p>Function for starting advertising. </p>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00277">277</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00294">294</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_a1c0499bd4d86190f2738aab146fc052e_cgraph.png" border="0" usemap="#main_8c_a1c0499bd4d86190f2738aab146fc052e_cgraph" alt=""/></div>
 <map name="main_8c_a1c0499bd4d86190f2738aab146fc052e_cgraph" id="main_8c_a1c0499bd4d86190f2738aab146fc052e_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="174,5,359,32"/>
-<area shape="rect" id="node4" href="ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="194,56,339,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="429,5,579,32"/>
-<area shape="rect" id="node5" href="pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="408,56,600,83"/>
-<area shape="rect" id="node6" href="ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="444,107,564,133"/>
+<area shape="rect" id="node2" href="ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="174,31,319,57"/>
+<area shape="rect" id="node3" href="pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="368,5,560,32"/>
+<area shape="rect" id="node4" href="ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="404,56,524,83"/>
 </map>
 </div>
 </p>
@@ -670,27 +638,14 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00096">96</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_cgraph.png" border="0" usemap="#main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_cgraph" alt=""/></div>
-<map name="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_cgraph" id="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="385,5,570,32"/>
-<area shape="rect" id="node4" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="187,56,336,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="619,31,770,57"/>
-<area shape="rect" id="node5" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="399,56,555,83"/>
-</map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00110">110</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_icgraph.png" border="0" usemap="#main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_icgraph" alt=""/></div>
 <map name="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_icgraph" id="main_8c_ad8b5b293dfa06cbbfeb03aaaaa2772cf_icgraph">
-<area shape="rect" id="node2" href="_ladybug__error_8h.html#a4df3b6dd09cac7a9c1705e80fcb735cb" title="Callback function for asserts in the SoftDevice. " alt="" coords="187,12,325,39"/>
+<area shape="rect" id="node2" href="main_8c.html#a4df3b6dd09cac7a9c1705e80fcb735cb" title="Callback function for asserts in the SoftDevice. " alt="" coords="187,12,325,39"/>
 <area shape="rect" id="node3" href="softdevice__handler_8c.html#a26d82eb7a8b9e1ad28fded69097d22a3" title="Callback function for asserts in the SoftDevice. " alt="" coords="373,5,517,46"/>
 <area shape="rect" id="node4" href="softdevice__handler_8c.html#a33d6c5c2cf0d6cd1e89ef172d75e0975" title="softdevice_handler_init" alt="" coords="566,12,725,39"/>
 </map>
@@ -736,18 +691,14 @@ On assert from the SoftDevice, the system can only recover on reset.</dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00081">81</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00095">95</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_cgraph.png" border="0" usemap="#main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_cgraph" alt=""/></div>
 <map name="main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_cgraph" id="main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_cgraph">
-<area shape="rect" id="node2" href="main_8c.html#ad8b5b293dfa06cbbfeb03aaaaa2772cf" title="Function for error handling, which is called when an error has occurred. " alt="" coords="193,31,325,57"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="571,5,757,32"/>
-<area shape="rect" id="node5" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="373,56,523,83"/>
-<area shape="rect" id="node4" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="806,31,957,57"/>
-<area shape="rect" id="node6" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="586,56,742,83"/>
+<area shape="rect" id="node2" href="main_8c.html#ad8b5b293dfa06cbbfeb03aaaaa2772cf" title="Function for error handling, which is called when an error has occurred. " alt="" coords="193,5,325,32"/>
 </map>
 </div>
 </p>
@@ -759,6 +710,42 @@ Here is the caller graph for this function:</div>
 <map name="main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_icgraph" id="main_8c_a4df3b6dd09cac7a9c1705e80fcb735cb_icgraph">
 <area shape="rect" id="node2" href="softdevice__handler_8c.html#a26d82eb7a8b9e1ad28fded69097d22a3" title="Callback function for asserts in the SoftDevice. " alt="" coords="192,5,336,46"/>
 <area shape="rect" id="node3" href="softdevice__handler_8c.html#a33d6c5c2cf0d6cd1e89ef172d75e0975" title="softdevice_handler_init" alt="" coords="385,12,543,39"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8d9d4c58cc86d4a22a38790db39c16a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void did_flash_write </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>err_code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>call back from <a class="el" href="_ladybug___flash_8c.html" title="Functions that read/write to/from the nRF51822&#39;s Flash. ">Ladybug_Flash.c</a> to let us know if the flash write was successful (or not) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">err_code</td><td>0 if successful </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="main_8c_source.html#l00076">76</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a8d9d4c58cc86d4a22a38790db39c16a8_icgraph.png" border="0" usemap="#main_8c_a8d9d4c58cc86d4a22a38790db39c16a8_icgraph" alt=""/></div>
+<map name="main_8c_a8d9d4c58cc86d4a22a38790db39c16a8_icgraph" id="main_8c_a8d9d4c58cc86d4a22a38790db39c16a8_icgraph">
+<area shape="rect" id="node2" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="165,5,216,32"/>
 </map>
 </div>
 </p>
@@ -799,70 +786,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00428">428</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8c_a5683319a8ba34696c26f847a35ef7fe2_cgraph.png" border="0" usemap="#main_8c_a5683319a8ba34696c26f847a35ef7fe2_cgraph" alt=""/></div>
-<map name="main_8c_a5683319a8ba34696c26f847a35ef7fe2_cgraph" id="main_8c_a5683319a8ba34696c26f847a35ef7fe2_cgraph">
-<area shape="rect" id="node2" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="355,5,541,32"/>
-<area shape="rect" id="node4" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="157,56,307,83"/>
-<area shape="rect" id="node3" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="590,31,741,57"/>
-<area shape="rect" id="node5" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="370,56,526,83"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a3b90614aaa1fdfe20ae38290f7411f22"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void flash_read </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_ladybug___hydro_8h.html#a4d46e6b7466de4fbd877e4f5b3b90cbd">flash_rw_t</a>&#160;</td>
-          <td class="paramname"><em>data_to_read</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>p_bytes_to_read</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="main_8c_source.html#l00472">472</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_cgraph.png" border="0" usemap="#main_8c_a3b90614aaa1fdfe20ae38290f7411f22_cgraph" alt=""/></div>
-<map name="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_cgraph" id="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_cgraph">
-<area shape="rect" id="node2" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="139,5,245,32"/>
-</map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_icgraph.png" border="0" usemap="#main_8c_a3b90614aaa1fdfe20ae38290f7411f22_icgraph" alt=""/></div>
-<map name="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_icgraph" id="main_8c_a3b90614aaa1fdfe20ae38290f7411f22_icgraph">
-<area shape="rect" id="node2" href="_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="165,5,318,32"/>
-<area shape="rect" id="node3" href="_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="139,56,343,83"/>
-<area shape="rect" id="node4" href="_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="151,107,332,133"/>
-</map>
-</div>
-</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00452">452</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -885,26 +809,41 @@ Here is the caller graph for this function:</div>
 <p>The BLE event dispatcher (ble_evt_dispatch()) calls the LBL's BLE event dispatcher. Communications with a client is through the client read/writing to characteristics. </p><dl class="section note"><dt>Note</dt><dd>I assume the power_manage() function does a "good job" interacting with the SoftDevice stack to minimize the amount of power used up by the LBL. I don't know how to fine tune power management at this time. I use examples from the nRF51 SDK as a crutch, assuming the code for most of main functionality is "cookie cutter" across examples and the Nordic engineers that write the examples realizes example code would be copy/pasted into our stuff. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>while main is defined as an int, nothing is really returned. </dd></dl>
 
-<p>Definition at line <a class="el" href="main_8c_source.html#l00570">570</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p>Definition at line <a class="el" href="main_8c_source.html#l00473">473</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
 <map name="main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
-<area shape="rect" id="node2" href="main_8c.html#a7fc0ef993034998a5f7e55ac9e0fa49f" title="Function for initializing the Advertising functionality. " alt="" coords="150,5,261,32"/>
-<area shape="rect" id="node5" href="main_8c.html#a1c0499bd4d86190f2738aab146fc052e" title="Function for starting advertising. " alt="" coords="145,56,265,83"/>
-<area shape="rect" id="node6" href="_s_e_g_g_e_r___r_t_t_8c.html#a48f49d4a8c91be7ca4ddf00c1f4e22c2" title="SEGGER_RTT_WriteString" alt="" coords="355,107,541,133"/>
-<area shape="rect" id="node10" href="_ladybug___hydro_8c.html#a50471f358500c0a227c9ab7cc1a64c28" title="ladybug_there_are_calibration\l_values_to_write" alt="" coords="105,158,306,199"/>
-<area shape="rect" id="node11" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#a442758fd24cb811b92e67782f215bf5a" title="SEGGER_RTT_printf" alt="" coords="131,224,280,251"/>
-<area shape="rect" id="node13" href="_ladybug___hydro_8c.html#ae2383d8c26da95e5ce2aae93436ad36b" title="ladybug_there_are_plantInfo\l_values_to_write" alt="" coords="109,275,301,317"/>
-<area shape="rect" id="node14" href="_ladybug___hydro_8c.html#a24ef7c4a5a45b3587d80540b7871cd4e" title="Hides a flag that says the device name has been changed by the client and it needs to be stored in Fl..." alt="" coords="113,341,297,382"/>
-<area shape="rect" id="node3" href="ble__advertising_8c.html#a1aa5ac2cc4100bde75f2d41d5c11c221" title="ble_advertising_init" alt="" coords="380,5,516,32"/>
-<area shape="rect" id="node4" href="ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="625,5,745,32"/>
-<area shape="rect" id="node8" href="ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="375,56,521,83"/>
-<area shape="rect" id="node7" href="_s_e_g_g_e_r___r_t_t_8c.html#aed26c0404eea08dc1c49c3420ce1348b" title="SEGGER_RTT_Write" alt="" coords="610,136,761,163"/>
-<area shape="rect" id="node9" href="pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="589,56,781,83"/>
-<area shape="rect" id="node12" href="_s_e_g_g_e_r___r_t_t__printf_8c.html#af3b81398913b7f7df425208067caab38" title="SEGGER_RTT_vprintf" alt="" coords="370,195,526,221"/>
+<area shape="rect" id="node2" href="_ladybug___flash_8c.html#aee0db12bcc4a034e960e299bb08929ca" title="Initialize the blocks of flash memory used for reading/writing. " alt="" coords="141,132,270,159"/>
+<area shape="rect" id="node9" href="_ladybug___hydro_8c.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="115,335,296,361"/>
+<area shape="rect" id="node17" href="main_8c.html#a7fc0ef993034998a5f7e55ac9e0fa49f" title="Function for initializing the Advertising functionality. " alt="" coords="150,436,261,463"/>
+<area shape="rect" id="node20" href="main_8c.html#a1c0499bd4d86190f2738aab146fc052e" title="Function for starting advertising. " alt="" coords="145,487,265,513"/>
+<area shape="rect" id="node23" href="_ladybug___flash_8c.html#a75084df1729ec0cde7e101a0ec98627d" title="When the Ladybug needs to store info, it calls the flash_write routine. " alt="" coords="383,385,523,412"/>
+<area shape="rect" id="node26" href="main_8c.html#a8d9d4c58cc86d4a22a38790db39c16a8" title="call back from Ladybug_Flash.c to let us know if the flash write was successful (or not) ..." alt="" coords="150,537,261,564"/>
+<area shape="rect" id="node27" href="_ladybug___hydro_8c.html#a50471f358500c0a227c9ab7cc1a64c28" title="ladybug_there_are_calibration\l_values_to_write" alt="" coords="105,589,306,630"/>
+<area shape="rect" id="node28" href="_ladybug___hydro_8c.html#ae2383d8c26da95e5ce2aae93436ad36b" title="ladybug_there_are_plantInfo\l_values_to_write" alt="" coords="109,654,301,695"/>
+<area shape="rect" id="node29" href="_ladybug___hydro_8c.html#a24ef7c4a5a45b3587d80540b7871cd4e" title="Hides a flag that says the device name has been changed by the client and it needs to be stored in Fl..." alt="" coords="113,719,297,761"/>
+<area shape="rect" id="node3" href="pstorage_8c.html#a729ef8b64fc0cb6bfdabb2543a565d32" title="pstorage_init" alt="" coords="404,5,503,32"/>
+<area shape="rect" id="node4" href="_ladybug___flash_8c.html#a7a642ea5fc1cff459a3dc58801979b97" title="This is the callback function that pstorage calls back to when a Flash event has completed for the bl..." alt="" coords="375,56,531,83"/>
+<area shape="rect" id="node5" href="pstorage_8c.html#a0a57b964c8945eaca2d267835ef6688c" title="pstorage_register" alt="" coords="391,107,516,133"/>
+<area shape="rect" id="node6" href="pstorage_8c.html#afdeeb475e4f2db19863226bc55d507b5" title="pstorage_block_identifier_get" alt="" coords="355,157,551,184"/>
+<area shape="rect" id="node7" href="_ladybug___flash_8c.html#aa01c194ad6388cfa42159609d19fc59e" title="create a timer to be used before a call to write/read to flash in case the flash action doesn&#39;t happe..." alt="" coords="405,208,501,235"/>
+<area shape="rect" id="node8" href="app__timer_8c.html#a8aa81f9e8bde352865be0502c7037592" title="app_timer_create" alt="" coords="633,183,759,209"/>
+<area shape="rect" id="node10" href="_ladybug___flash_8c.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="384,284,523,311"/>
+<area shape="rect" id="node16" href="_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c" title="call back from Ladybug_Flash.c to let us know if the flash read was successful (or not) ..." alt="" coords="399,335,508,361"/>
+<area shape="rect" id="node11" href="_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="653,284,739,311"/>
+<area shape="rect" id="node13" href="pstorage_8c.html#a99402440650cc2d2ee63d8866760a25b" title="pstorage_load" alt="" coords="643,233,749,260"/>
+<area shape="rect" id="node14" href="_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="654,335,738,361"/>
+<area shape="rect" id="node12" href="app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="840,284,955,311"/>
+<area shape="rect" id="node15" href="app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="841,335,954,361"/>
+<area shape="rect" id="node18" href="ble__advertising_8c.html#a1aa5ac2cc4100bde75f2d41d5c11c221" title="ble_advertising_init" alt="" coords="385,436,521,463"/>
+<area shape="rect" id="node19" href="ble__advdata_8c.html#a180ff4057a0763688c734e98ab8d976b" title="ble_advdata_set" alt="" coords="636,487,756,513"/>
+<area shape="rect" id="node21" href="ble__advertising_8c.html#a944db395f3667276eb62a8bf3d0583ad" title="ble_advertising_start" alt="" coords="381,487,526,513"/>
+<area shape="rect" id="node22" href="pstorage_8c.html#a1553a4d6d6d8ddf070d0eb4960b72d62" title="pstorage_access_status_get" alt="" coords="600,537,792,564"/>
+<area shape="rect" id="node24" href="pstorage_8c.html#a837209ed48f5dd3bba9a0ea82cfa4f59" title="pstorage_clear" alt="" coords="641,385,751,412"/>
+<area shape="rect" id="node25" href="pstorage_8c.html#a12e52da12709de8d43bfb8389b80af6d" title="pstorage_store" alt="" coords="641,436,751,463"/>
 </map>
 </div>
 </p>

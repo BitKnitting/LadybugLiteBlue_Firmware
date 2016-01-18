@@ -1,6 +1,6 @@
 <map id="include/Ladybug_Hydro.h" name="include/Ladybug_Hydro.h">
-<area shape="rect" id="node2" href="$ble__lbl__service_8c.html" title="Establishes the BLE characteristics and handles BLE requests from the client (AKA Central)..." alt="" coords="5,80,147,107"/>
-<area shape="rect" id="node3" href="$_ladybug___hydro_8c.html" title="Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. " alt="" coords="225,155,372,181"/>
-<area shape="rect" id="node4" href="$main_8c.html" title="Starting point for the Ladybug Blue Lite firmware. The LBL reads the pH and EC levels in a nutrient b..." alt="" coords="223,80,305,107"/>
-<area shape="rect" id="node5" href="$_ladybug__flash_8h.html" title="include/Ladybug_flash.h" alt="" coords="329,80,495,107"/>
+<area shape="rect" id="node2" href="$_ladybug___b_l_e_8c.html" title="This file handles all the BLE &quot;goo&quot; and activity. Goo like adding the characteristics to the SoftDevi..." alt="" coords="5,80,141,107"/>
+<area shape="rect" id="node3" href="$_ladybug___flash_8c.html" title="Functions that read/write to/from the nRF51822&#39;s Flash. " alt="" coords="166,80,311,107"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8c.html" title="Handles pH and EC mV readings from the AIN and to/from Flash as needed by the client. " alt="" coords="335,80,483,107"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="Starting point for the Ladybug Blue Lite firmware. The LBL reads the pH and EC levels in a nutrient b..." alt="" coords="508,80,591,107"/>
 </map>

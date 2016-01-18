@@ -1,0 +1,6 @@
+<map id="did_flash_read" name="did_flash_read">
+<area shape="rect" id="node2" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="189,5,342,32"/>
+<area shape="rect" id="node3" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="163,56,367,83"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="175,107,356,133"/>
+<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="416,107,467,133"/>
+</map>

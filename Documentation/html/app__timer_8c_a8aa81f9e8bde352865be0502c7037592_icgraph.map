@@ -1,3 +1,6 @@
 <map id="app_timer_create" name="app_timer_create">
 <area shape="rect" id="node2" href="$ble__conn__params_8c.html#acd9789a0a4c90cfea2ba2656f6408080" title="ble_conn_params_init" alt="" coords="179,5,331,32"/>
+<area shape="rect" id="node3" href="$_ladybug___flash_8c.html#aa01c194ad6388cfa42159609d19fc59e" title="create a timer to be used before a call to write/read to flash in case the flash action doesn&#39;t happe..." alt="" coords="207,56,303,83"/>
+<area shape="rect" id="node4" href="$_ladybug___flash_8h.html#a435a629aad711985f4501d96900c4a3f" title="Initialize the blocks of flash memory used for reading/writing. " alt="" coords="379,56,509,83"/>
+<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="557,56,608,83"/>
 </map>

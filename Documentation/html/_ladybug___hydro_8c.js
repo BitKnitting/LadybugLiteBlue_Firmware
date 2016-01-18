@@ -1,7 +1,7 @@
 var _ladybug___hydro_8c =
 [
-    [ "EC_VIN_FET", "_ladybug___hydro_8c.html#adc2a12272dec562832081b9df7963276", null ],
-    [ "EC_VOUT_FET", "_ladybug___hydro_8c.html#a2e796f5ea1dd794de6eb0d633c936826", null ],
+    [ "DEBUG", "_ladybug___hydro_8c.html#ad72dbcf6d0153db1b8d8a58001feed83", null ],
+    [ "did_flash_read", "_ladybug___hydro_8c.html#a9a1c497a7f82e304623169dac01bd02c", null ],
     [ "ladybug_get_calibration_values_memory_location", "_ladybug___hydro_8c.html#aba27f18b899dc075bb565ce8a886cb5c", null ],
     [ "ladybug_get_calibrationValues", "_ladybug___hydro_8c.html#afff0e97016d886f457fdaa5fb5822624", null ],
     [ "ladybug_get_device_name", "_ladybug___hydro_8c.html#ab98babdac1ab1060ed5460b6fcb21b26", null ],

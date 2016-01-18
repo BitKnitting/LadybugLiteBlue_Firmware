@@ -106,7 +106,4 @@ bool ladybug_there_are_calibration_values_to_write(storeCalibrationValues_t **p_
 bool ladybug_there_are_plantInfo_values_to_write(storePlantInfo_t **p_storePlantInfo);
 bool ladybug_the_device_name_has_been_updated(char **p_deviceName);
 
-//ERROR CODES
-#define		LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_READ	101 ///<the function reading flash does not know what flash to read because the caller hasn't made this clear.
-#define		LADYBUG_ERROR_UNSURE_WHAT_DATA_TO_WRITE	102 ///<the function write to flash does not know what flash block to write tobecause the caller hasn't made this clear.
 #endif

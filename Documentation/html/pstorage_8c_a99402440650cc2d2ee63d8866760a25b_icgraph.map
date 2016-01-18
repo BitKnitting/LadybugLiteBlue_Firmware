@@ -1,6 +1,7 @@
 <map id="pstorage_load" name="pstorage_load">
-<area shape="rect" id="node2" href="$_ladybug__flash_8h.html#a1a8d384a34b8e5c67648a44ce20e81e0" title="flash_read" alt="" coords="161,56,245,83"/>
-<area shape="rect" id="node3" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="319,5,473,32"/>
-<area shape="rect" id="node4" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="294,56,498,83"/>
-<area shape="rect" id="node5" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="305,107,487,133"/>
+<area shape="rect" id="node2" href="$_ladybug___flash_8h.html#accba088f9b6b188a92f5c51b14a58b49" title="ladybug_flash_read" alt="" coords="160,56,299,83"/>
+<area shape="rect" id="node3" href="$_ladybug___hydro_8h.html#a5310b84fbe5b55ff17ca16cde0e36cb9" title="Read the plant type and stage stored in flash. If a write check has not been written, then set the plant type and stage to default strings. " alt="" coords="373,5,526,32"/>
+<area shape="rect" id="node4" href="$_ladybug___hydro_8h.html#afff0e97016d886f457fdaa5fb5822624" title="ladybug_get_calibrationValues" alt="" coords="347,56,551,83"/>
+<area shape="rect" id="node5" href="$_ladybug___hydro_8h.html#ab98babdac1ab1060ed5460b6fcb21b26" title="ladybug_get_device_name" alt="" coords="359,107,540,133"/>
+<area shape="rect" id="node6" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="I think of main as providing initialization and BLE event handling. One of the event handlers is used..." alt="" coords="600,107,651,133"/>
 </map>

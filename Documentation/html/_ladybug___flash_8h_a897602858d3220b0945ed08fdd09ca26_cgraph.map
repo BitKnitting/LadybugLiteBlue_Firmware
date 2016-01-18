@@ -1,0 +1,8 @@
+<map id="ladybug_flash_write" name="ladybug_flash_write">
+<area shape="rect" id="node2" href="$_ladybug___flash_8c.html#aaedac22c55880495505bf375e0e132c1" title="Start the timer before calling into pstorage asking for a flash event. " alt="" coords="208,5,293,32"/>
+<area shape="rect" id="node4" href="$pstorage_8c.html#a837209ed48f5dd3bba9a0ea82cfa4f59" title="pstorage_clear" alt="" coords="195,56,306,83"/>
+<area shape="rect" id="node5" href="$_ladybug___flash_8c.html#a58997b988646976eadf522f6b26c9f46" title="Called to stop the timer from firing. " alt="" coords="209,107,293,133"/>
+<area shape="rect" id="node7" href="$pstorage_8c.html#a12e52da12709de8d43bfb8389b80af6d" title="pstorage_store" alt="" coords="195,157,306,184"/>
+<area shape="rect" id="node3" href="$app__timer_8c.html#a03fb5f5fa85d16289db0d3c15bb0f24d" title="app_timer_start" alt="" coords="355,5,469,32"/>
+<area shape="rect" id="node6" href="$app__timer_8c.html#ad40fbb2a6a9e5bf7d00f838763f5514c" title="app_timer_stop" alt="" coords="355,107,469,133"/>
+</map>
